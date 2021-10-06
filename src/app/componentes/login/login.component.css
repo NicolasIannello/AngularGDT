@@ -1,0 +1,112 @@
+.pe{
+    color: white;
+    background-color: red;
+}
+.inicio{
+    background-color: rgb(255, 255, 255,0.9);
+    text-align: center;
+    margin-top: 10%;
+    border-bottom-left-radius: 30% 60%;
+    border-bottom-right-radius: 30% 60%;
+    border-top-left-radius: 30% 60%;
+    border-top-right-radius: 30% 60%;
+}
+.iniciodos{
+    text-align: center;
+    margin-top: 10%;
+}
+button.btnMostrar{
+    float: none;
+    border: none;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    color: rgb(236, 236, 236);
+    font-weight: 600;
+    cursor: pointer;
+    background: rgb(1, 50, 67);
+    outline: none;
+}
+button.btnMostrar:hover{
+    background: rgb(52, 73, 94);
+}
+button.btnMostrar:active{
+    background: rgb(34, 49, 63);
+}
+.mt{
+    margin-bottom: 10%;
+}
+button.btnRegister{
+    float: none;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: rgb(1, 50, 67);
+    color: rgb(236, 236, 236);
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+    margin-top: 10%;
+}
+#marbot{
+    height: 150px;
+}
+button.btnRegister:hover{
+    background: rgb(52, 73, 94);
+}
+button.btnRegister:active{
+    background: rgb(34, 49, 63);
+}
+.btnCuenta{
+    float: none;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: rgb(236, 236, 236);
+    color: rgb(1, 50, 67);
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+    margin-top: 42%;
+}
+.btnCuenta:hover{
+    background: rgb(218, 223, 225);
+}
+.btnCuenta:active{
+    background: rgb(189, 195, 199);
+}
+i.fas.fa-map-marker-alt{
+    font-size: 120px;
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+#logo1{
+    color: rgb(236, 236, 236);
+    animation: mover 2s infinite  alternate linear;
+}
+@keyframes mover {
+    0% { transform: translateY(-10px); }
+    100% { transform: translateY(+40px); }
+}
+#logo2{
+    color: rgb(1, 50, 67);
+    /*-webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;*/
+}
+button{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+    -webkit-box-shadow: none;
+}
+input#contra{
+    background: white;
+    border: 1px solid #ced4da;
+    z-index: 0;
+}
+input#user{
+    background: white;
+    border: 1px solid #ced4da;
+}
+label{
+    z-index: 1;
+}

@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-3 iniciodos mx-auto">
+        <i id="logo1" class="fas fa-map-marker-alt"></i><br>
+        <button class="mx-auto btnCuenta" id="cuenta" name="cuenta">No tengo una cuenta</button>
+    </div>
+   
+    <div class="col-md-3 inicio mx-auto">
+        <i id="logo2" class="fas fa-map-marker-alt"></i>
+        <div class="col-md-7 mx-auto mt">
+            <div class="form-outline">
+                <input type="text" id="user" class="form-control" />
+                <label class="form-label" for="user">Usuario</label>
+            </div>
+        </div>
+        <div class="input-group col-md-7 mx-auto ">
+            <div class="form-outline input-group">   
+                <input [type]="typecontra" id="contra" class="form-control" />
+                <label class="form-label" for="contra">Contraseña</label>
+                <button id="Mostrar" class="btnMostrar" (click)=Mostrar()>Mostrar</button>
+            </div>
+            <a href="">Olvide mi contraseña</a>    
+        </div>
+        <div id="marbot">
+            <button class="col-md-4 mx-auto btnRegister" id="log" (click)=EnviarIngreso()>Ingresar</button>
+            <br>
+            <span id="resultado"></span>
+        </div>
+    </div>
+</div>

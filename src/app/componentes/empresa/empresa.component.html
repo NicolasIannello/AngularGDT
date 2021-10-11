@@ -1,0 +1,202 @@
+<div class="row" id="pildora">
+    <div id="turnos" class="col-md-9 mx-auto">
+    <!--    <app-tabla-turno></app-tabla-turno>-->
+        <ul class="nav nav-tabs nav-justified">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#turnosCreados" aria-selected="true">Turnos Creados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#turnosClientes" aria-selected="false">Turnos Clientes</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="turnosCreados">
+               <div class="table-wrapper-scroll-y my-custom-scrollbar" id="mostrarTabla">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Codigo agrupador</th>
+                            <th>ID Turno particular</th>
+                            <th>Fecha</th>
+                            <th>Servicio</th>
+                            <th>Horario Turno</th>
+                            <th>Cupos disponibles</th>
+                        </tr>
+                        <tr *ngFor="let turno of Turnos">
+                            <td>{{turno['Codigo agrupador']}}</td>
+                            <td>{{turno['ID Turno particular']}}</td>
+                            <td>{{turno.Fecha}}</td>
+                            <td>{{turno.Servicio}}</td>
+                            <td>{{turno['Horario Turno']}}</td>
+                            <td>{{turno['Cupos disponibles']}}</td>
+                        </tr>
+                    </thead> 
+                </table> 
+               </div>
+               <div id="divelim" class="input-group divelim">
+                    <span class="elimturn">Eliminar turno:</span> 
+                    <select class="form-select tipoelim" id="tipoelim" (change)=selectelim()>
+                        <option value="ID Turno particular">ID Turno particular</option>
+                        <option value="Codigo agrupador" selected>Codigo agrupador</option>
+                        <option value="Fecha">Fecha</option>
+                    </select>
+                    <input [type]=typeDelim class="datoelim" id="datoelim" name="datoelim" [(ngModel)]=datoelim>
+                    <button id="eliminar" (click)=eliminarTurno()>
+                        <span [class]="spinnerelim" role="status" aria-hidden="true" id="spinnerelim">{{spinnerelimtext}}</span>
+                    </button>  
+                </div>
+            </div> 
+            <div class="tab-pane fade show" id="turnosClientes">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar" id="mostrarclientes">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="text-center" id="columna">Fecha</th>
+                                <th class="text-center" id="columna">Servicio</th>
+                                <th class="text-center" id="columna">Horario turno</th>
+                                <th class="text-center" id="columna">Cliente</th>
+                            </tr>
+                            <tr *ngFor="let clie of Clientes">
+                                <td>{{clie.Fecha}}</td>
+                                <td>{{clie.Servicio}}</td>
+                                <td>{{clie['Horario turno']}}</td>
+                                <td>{{clie.Cliente}}</td>
+                            </tr>
+                        </thead> 
+                    </table> 
+                </div>
+                <div id="divcargar" class="input-group divcargar">
+                    <span id="cargarturn">Cargar turno:</span> 
+                    <input type="date" class="borders" id="fechacarg" name="fechacarg" [(ngModel)]=fechacarg>
+                    <select class="form-select" name="serviciocarg" id="serviciocarg" (input)=serviCarg()>
+                        <option value="" hidden selected>Tipo de servicio</option>
+                        <option *ngFor="let item of servicios" value={{item.ServicioID}}>{{item.Descripcion}}</option>
+                    </select>
+                    <input type="time" class="borders" id="timecarg" name="timecarg" [(ngModel)]=timecarg>
+                    <input type="text" class="borders" id="cliecarg" name="cliecarg" [(ngModel)]=cliecarg>
+                    <button id="cargar" class="cargar" (click)=cargarCliente()>
+                        <span [class]=spinnerclie role="status" aria-hidden="true" id="spinnerclie">{{spinnerclietext}}</span>
+                    </button>  
+                </div>
+            </div>
+            <br>
+            <div>
+                <span>Generar Turno:</span>
+                <table>
+                    <tr>
+                        <td>
+                            <select class="form-select" name="servicio" id="servicio" (input)=serviID()>
+                                <option value="" hidden selected>Tipo de servicio</option>
+                                <option *ngFor="let item of servicios" value={{item.ServicioID}}>{{item.Descripcion}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div id="divdur" class="input-group">
+                                <span id="duracion">Duracion del turno</span>
+                                <select name="duracionmin" id="duracionmin" class="form-select" [(ngModel)]=duracionmin>
+                                    <option hidden value="">Tiempo</option>
+                                    <option value="15">15 minutos</option>
+                                    <option value="30">30 minutos</option>
+                                    <option value="60">60 minutos</option>
+                                </select>
+                            </div>            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr><td id="diaact">
+                                        <span id="diaact2">Dias de actividad: </span>
+                                    </td>
+                                    <td id="dias">
+                                        <div id="checkdias">
+                                            <label>
+                                                <input type="checkbox" id="dia1" name="dia1" value="Monday" [(ngModel)]=dia1><span>L</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td id="dias">
+                                        <div id="checkdias">
+                                            <label>
+                                                <input type="checkbox" id="dia2" name="dia2" value="Tuesday" [(ngModel)]=dia2><span>M</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td id="dias">
+                                        <div id="checkdias">
+                                            <label>
+                                                <input type="checkbox" id="dia3" name="dia3" value="Wednesday" [(ngModel)]=dia3><span>M</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td id="dias">
+                                        <div id="checkdias">
+                                            <label>
+                                                <input type="checkbox" id="dia4" name="dia4" value="Thursday" [(ngModel)]=dia4><span>J</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td id="dias">
+                                        <div id="checkdias">
+                                            <label>
+                                                <input type="checkbox" id="dia5" name="dia5" value="Friday" [(ngModel)]=dia5><span>V</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td id="dias">
+                                        <div id="checkdias">
+                                            <label>
+                                                <input type="checkbox" id="dia6" name="dia6" value="Saturday" [(ngModel)]=dia6><span>S</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td id="dias">
+                                        <div id="checkdias">
+                                            <label>
+                                                <input type="checkbox" id="dia7" name="dia7" value="Sunday" [(ngModel)]=dia7><span>D</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <div id="divcap" class="input-group">
+                                <span id="spcap" >Capacidad de clientes por turno</span>
+                                <input type="text" id="capacidad" [(ngModel)]=capacidad>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="Ffin" class="input-group">
+                                <span id="fin">Fecha de finalizacion</span>
+                                <input type="date" id="fechafin" [(ngModel)]=fechafin>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="horarios" class="input-group">
+                                <span id="hturn">Horario de los turnos</span>
+                                <input type="time" id="horainicio" [(ngModel)]=horainicio><input type="time" id="horafin" [(ngModel)]=horafin>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <button id="generar" name="generar" (click)=Generar()>
+                                <span [class]=spinnerclass role="status" aria-hidden="true" id="spinner">{{spinnertext}}</span>
+                            </button>  
+                        </td>
+                    </tr>
+                </table> 
+            </div>
+        </div><!---->
+    </div>
+
+    <div id="user" class="col-md-2 mx-auto">
+        <div id="usernom">{{User[0].NombreUsuario}}</div>
+        <button class="mx-auto btnCuenta" id="cuenta" name="cuenta" (click)=cerrarsesion()>Cerrar sesion</button>
+    </div>
+</div>

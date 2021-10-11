@@ -1,0 +1,296 @@
+body{
+    overflow: hidden;
+}
+#fondo{
+    /*z-index: 0;*/
+    height: 100%;
+    width: 100.5%;
+    position:absolute;
+    top: 0;
+    left: 0;
+}
+#turnos{
+    background-color: rgb(255, 255, 255);
+    /*z-index: 1;*/
+    margin-top: 5%;
+    border-bottom-right-radius: 30% 85%;
+    border-top-right-radius: 30% 85%;
+    height:810px;
+    margin-left: 2%;
+}
+#pildora{
+    margin-top: -1.5%;
+    margin-left: 0%;
+}
+.table {
+    color: #212529;
+    
+}
+ul{
+    width: 25%;
+    height: 6.3%;
+}
+/*--------------------------------------*/
+.nav-tabs{
+    border: none;
+    background: rgb(1, 50, 67);
+    border-radius: 1.5rem;
+}
+.nav-tabs .nav-link{
+    padding: 9%;
+    font-weight: 600;
+    font-size: 20;
+    color: rgb(255, 255, 255);
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.nav-tabs .nav-link:hover{
+    border: none;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    background: #D0D0D0;
+    color: rgb(1, 50, 67);
+}
+.nav-tabs .nav-link.active{
+    color: rgb(1, 50, 67);
+    border: 2px solid rgb(1, 50, 67);
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+ul.nav.nav-tabs.nav-justified{
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
+}
+/*--------------------------------------*/
+.my-custom-scrollbar {
+    position: relative;
+    height: 350px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+    width: 87%;
+}
+.thead-dark{
+    position:sticky; 
+    top:0;
+}
+/*--------------------------------------*/
+#servicio{
+    width: 45%;
+    color: black;
+}
+/*--------------------------------------*/
+#checkdias {
+    border-radius:100px;
+    border:1px solid #D0D0D0;
+    overflow:auto;
+    float:left;
+}
+#checkdias label {
+    float:left;
+    width:1.8em;
+    height: 1.4em;
+}
+#checkdias label span {
+    text-align:center;
+    padding:3px 0px;
+    display:block;
+}
+#checkdias label input {
+    position:absolute;
+    top:-80px;
+}
+#checkdias input:checked + span {
+    background-color:rgb(1, 50, 67);
+    color:#fff;
+}
+#dias{
+width: 15%;
+}
+#diaact{
+    width: 100%;
+}
+/*--------------------------------------*/
+.divelim{
+    margin-top: 1%;
+    width: 44%;
+}
+.elimturn{
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    border:1px solid #D0D0D0;
+    padding: 1%;
+}
+.tipoelim{
+    color: black;
+}
+.datoelim{
+    border:1px solid #D0D0D0;
+}
+#eliminar{
+    border: none;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    color: rgb(236, 236, 236);
+    font-weight: 600;
+    cursor: pointer;
+    background: rgb(1, 50, 67);
+    width: 22%;
+}
+#eliminar:hover{
+    background: rgb(1, 50, 67);
+}
+#eliminar:active{
+    background: rgb(34, 49, 63);
+}
+/*--------------------------------------*/
+#divdur{
+    margin-top: 1%;
+   /* width: 30%;*/
+   margin-left: 80%;
+}
+#duracion{
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    border:1px solid #D0D0D0;
+    padding: 2%;
+}
+#duracionmin{
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+/*--------------------------------------*/
+#divcap{
+    margin-top: 1%;
+    margin-left: 80%;
+}
+#spcap{
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    border:1px solid #D0D0D0;
+    padding: 2%;
+}
+#capacidad{
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    border:1px solid #D0D0D0;
+    width: 40%;
+}
+/*--------------------------------------*/
+#Ffin{
+    margin-top: 1%;
+}
+#fin{
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    border:1px solid #D0D0D0;
+    padding: 2%;
+}
+#fechafin{
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    border:1px solid #D0D0D0;
+    width: 40%;
+}
+/*--------------------------------------*/
+#horarios{
+    margin-top: 1%;
+    margin-left: 80%;
+}
+#hturn{
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    border:1px solid #D0D0D0;
+    padding: 2%;
+}
+#horainicio{
+    border:1px solid #D0D0D0;
+    width: 29%;
+}
+#horafin{
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    border:1px solid #D0D0D0;
+    width: 29%;
+}
+/*--------------------------------------*/
+#generar{
+    margin-top: 3%;
+    margin-left: 80%;
+    width: 30%;
+    float: none;
+    border: none;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    color: rgb(236, 236, 236);
+    font-weight: 600;
+    cursor: pointer;
+    background: rgb(1, 50, 67);
+    outline: none;
+    padding: 1.5%;
+}
+#generar:hover{
+    background: rgb(1, 50, 67);
+}
+#generar:active{
+    background: rgb(34, 49, 63);
+}
+/*--------------------------------------*/
+.cargar{
+    border: none;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    color: rgb(236, 236, 236);
+    font-weight: 600;
+    cursor: pointer;
+    background: rgb(1, 50, 67);
+    width: 15%;
+}
+.cargar:hover{
+    background: rgb(1, 50, 67);
+}
+.cargar:active{
+    background: rgb(34, 49, 63);
+}
+.divcargar{
+    margin-top: 1%;
+    width: 60%;
+}
+.borders{
+    border:1px solid #D0D0D0;
+    width: 17%;
+}
+#cargarturn{
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    border:1px solid #D0D0D0;
+    padding: 0.5%;
+}
+.btnCuenta{
+    float: none;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 4%;
+    background: rgb(236, 236, 236);
+    color: rgb(1, 50, 67);
+    font-weight: 600;
+    width: 80%;
+    cursor: pointer;
+    text-align: center;
+}
+.btnCuenta:hover{
+    background: rgb(218, 223, 225);
+}
+.btnCuenta:active{
+    background: rgb(189, 195, 199);
+}
+#usernom{
+    margin-top: 120%;
+    margin-left: 5%;
+    margin-bottom: 50%;
+    font-size: 3rem;
+    color:rgb(189, 195, 199);
+}

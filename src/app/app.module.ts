@@ -12,8 +12,9 @@ import { FondoComponent } from './componentes/fondo/fondo.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { HttpClient } from '@angular/common/http';
 import { EmpresaComponent } from './componentes/empresa/empresa.component';
-import { GenerarTurnoComponent } from './componentes/empresa/generar-turno/generar-turno.component';
-import { TablaTurnoComponent } from './componentes/empresa/tabla-turno/tabla-turno.component';
+import { RempresaComponent } from './componentes/registro/rempresa/rempresa.component';
+import { RclienteComponent } from './componentes/registro/rcliente/rcliente.component';
+import { RegistroComponent } from './componentes/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,9 @@ import { TablaTurnoComponent } from './componentes/empresa/tabla-turno/tabla-tur
     FondoComponent,
     LoginComponent,
     EmpresaComponent,
-    GenerarTurnoComponent,
-    TablaTurnoComponent
+    RempresaComponent,
+    RclienteComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

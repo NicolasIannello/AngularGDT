@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-3 iniciodos mx-auto">
+        <i id="logo1" class="fas fa-map-marker-alt"></i><br>
+        <button class="mx-auto btnCuenta" id="cuenta" name="cuenta" (click)=irLogin()>Ya tengo una cuenta</button>
+    </div>
+    <div class="col-md-9 mx-auto">
+        <div id="pildora">
+            <div class="d-flex flex-row-reverse">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#Empresa" aria-selected="true">Empresa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#Cliente" aria-selected="false">Cliente</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="Empresa">
+                    <app-rempresa></app-rempresa>
+                </div>
+                <div class="tab-pane fade show" id="Cliente">
+                    <app-rcliente></app-rcliente>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

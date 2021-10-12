@@ -1,0 +1,56 @@
+<div class="container justify-content-center">
+    <div class="reemp">Registro Cliente</div>
+    <div id="row3" class="row">
+        <div class="col-sm">
+            <div class="form-outline">
+                <input type="text" id="nomclie" class="form-control" [(ngModel)]=nombre/>
+                <label class="form-label" for="nomclie">Nombre</label>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="form-outline">
+                <input type="text" id="apeclie" class="form-control" [(ngModel)]=apellido />
+                <label class="form-label" for="apeclie">Apellido</label>
+            </div>
+        </div>
+    </div>
+    <div id="row3" class="row">
+        <div class="col-sm">
+            <div id="group2" class="form-outline input-group"> 
+                <input [type]=passclie id="passclie" class="form-control" [(ngModel)]=contra/>
+                <label class="form-label" for="passclie">Contraseña</label>
+                <button id="Mostrar" class="btnMostrar" (click)=Mostrar1()>Mostrar</button>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="form-outline">
+                <input type="text" id="userclie" class="form-control" [(ngModel)]=user/>
+                <label class="form-label" for="userclie">Nombre de usuario</label>
+            </div>
+        </div>
+    </div>
+    <div id="row3" class="row">
+        <div class="col-sm">
+            <div id="group2" class="form-outline input-group"> 
+                <input [type]=passclie2 id="passclie2" class="form-control" [(ngModel)]=contra2/>
+                <label class="form-label" for="passclie2">Confirmar contraseña</label>
+                <button id="Mostrar" class="btnMostrar" (click)=Mostrar2()>Mostrar</button>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="form-outline">
+                <input type="text" id="mailclie" class="form-control" [(ngModel)]=mail/>
+                <label class="form-label" for="mailclie">Email</label>
+            </div>
+        </div>
+    </div>
+    <div id="row3" class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm">
+            <button id="crearclie" name="crearclie" (click)=crearClie()>
+                <span [class]=spinnerclie role="status" aria-hidden="true" id="spinnerclie">{{spinnertext}}</span>
+            </button>
+        </div>
+    </div>
+</div>

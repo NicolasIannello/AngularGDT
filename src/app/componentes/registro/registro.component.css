@@ -1,0 +1,254 @@
+body{
+    overflow: hidden;
+}
+#fondo{
+    /*z-index: 0;*/
+    height: 100%;
+    width: 100.5%;
+    position:absolute;
+    top: 0;
+    left: 0;
+}
+.btnCuenta{
+    float: none;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: rgb(236, 236, 236);
+    color: rgb(1, 50, 67);
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+    margin-top: 42%;
+}
+.btnCuenta:hover{
+    background: rgb(218, 223, 225);
+}
+.btnCuenta:active{
+    background: rgb(189, 195, 199);
+}
+i.fas.fa-map-marker-alt{
+    font-size: 120px;
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+#logo1{
+    color: rgb(236, 236, 236);
+    animation: mover 2s infinite  alternate linear;
+}
+@keyframes mover {
+    0% { transform: translateY(-10px); }
+    100% { transform: translateY(+40px); }
+}
+#pildora{
+    background-color: rgb(255, 255, 255);
+    border-bottom-left-radius: 30% 85%;
+    border-top-left-radius: 30% 85%;
+    height:710px;
+    margin-top: 7%;
+    margin-right: 3%;
+}
+.iniciodos{
+    text-align: center;
+    margin-top: 10%;
+    z-index: 1;
+}
+ul{
+    width: 25%;
+    height: 6.3%;
+}
+.nav-tabs{
+    border: none;
+    background: rgb(1, 50, 67);
+    border-radius: 1.5rem;
+}
+.nav-tabs .nav-link{
+    padding: 9%;
+    font-weight: 600;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.nav-tabs .nav-link:hover{
+    border: none;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    background: #D0D0D0;
+    color: rgb(1, 50, 67);
+}
+.nav-tabs .nav-link.active{
+    color: rgb(1, 50, 67);
+    border: 2px solid rgb(1, 50, 67);
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+ul.nav.nav-tabs.nav-justified{
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
+    margin-right: 0.5%;
+    height: 3.2rem;
+}
+#Empresa{
+    margin-left: 30%;
+    margin-top: 2%;
+}
+#Cliente{
+    margin-left: 30%;
+    margin-top: 2%;
+}
+#nomemp{
+    background: white;
+    border: 1px solid #ced4da;
+    width: 75%;
+}
+#mailemp{
+    background: white;
+    border: 1px solid #ced4da;
+    width: 75%;
+}
+#contraemp{
+    background: white;
+    border: 1px solid #ced4da;
+    width: 1.5%;
+}
+#contraemp2{
+    background: white;
+    border: 1px solid #ced4da;
+    width: 36.5%;
+}
+#localidademp{
+    margin-top: 4%;
+    width: 75%;
+}
+#Mapa{
+    height: 610%;
+    width: 80%;
+}
+#ubicacion{
+    background: white;
+    border: 1px solid #ced4da;
+    width: 75.5%;
+    margin-top: 5%;
+}
+#btnubi{
+    width: 75.5%;
+    height: 100%;
+    background: rgb(1, 50, 67);
+    float: none;
+    border: none;
+    border-bottom-right-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+#crearemp{
+    height: 80%;
+    margin-top: 5%;
+    width: 78%;
+    float: none;
+    border: none;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    color: rgb(236, 236, 236);
+    font-weight: 600;
+    cursor: pointer;
+    background: rgb(1, 50, 67);
+    outline: none;
+    padding: 1.5%;
+}
+#crearemp:hover{
+    background: rgb(1, 50, 67);
+}
+#crearemp:active{
+    background: rgb(34, 49, 63);
+}
+#nomclie{
+    background: white;
+    border: 1px solid #ced4da;
+    width: 75%;
+}
+#apeclie{
+    background: white;
+    border: 1px solid #ced4da;
+    width: 75%;
+}
+#userclie{
+    background: white;
+    border: 1px solid #ced4da;
+    width: 75%;
+}
+#mailclie{
+    background: white;
+    border: 1px solid #ced4da;
+    width: 75%;
+}
+#passclie{
+    background: white;
+    border: 1px solid #ced4da;
+    width: 75%;
+}
+#passclie2{
+    background: white;
+    border: 1px solid #ced4da;
+    width: 75%;
+}
+#crearclie{
+    width: 75%;
+    height: 50;
+    float: none;
+    border: none;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    color: rgb(236, 236, 236);
+    font-weight: 600;
+    cursor: pointer;
+    background: rgb(1, 50, 67);
+    outline: none;
+    padding: 1.5%;
+}
+#crearclie:hover{
+    background: rgb(1, 50, 67);
+}
+#crearclie:active{
+    background: rgb(34, 49, 63);
+}
+button.btnMostrar{
+    float: none;
+    border: none;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    color: rgb(236, 236, 236);
+    font-weight: 600;
+    cursor: pointer;
+    background: rgb(1, 50, 67);
+    outline: none;
+}
+button.btnMostrar:hover{
+    background: rgb(52, 73, 94);
+}
+button.btnMostrar:active{
+    background: rgb(34, 49, 63);
+}
+#group{
+    width: 78%;
+    margin-top: 5%;
+}
+#group2{
+    width: 75%;
+}
+#row2{
+    width: 50%;
+}
+#row3{
+    margin-top: 2%;
+}
+.reemp{
+    margin-left: 30%;
+    margin-bottom: 3%;
+    font-size: 40;
+    font-weight: 600;
+    color: rgb(52, 73, 94);
+}

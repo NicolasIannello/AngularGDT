@@ -1,0 +1,67 @@
+<div class="container justify-content-center">
+    <div class="reemp">Registro Empresa</div>
+    <div id="row" class="row">
+        <div class="col-sm">
+            <div class="form-outline">
+                <input type="text" id="nomemp" class="form-control" [(ngModel)]=nombre/>
+                <label class="form-label" for="nomemp">Nombre de Empresa</label>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div id="Mapa"></div>
+            <button id="crearemp" name="crearemp" (click)=crearEmp()>
+                <span [class]=spinner role="status" aria-hidden="true" id="spinneremp">{{spinnertext}}</span>
+            </button>
+        </div>
+    </div>
+    <div id="row" class="row">
+        <div class="col-sm">
+            <div class="form-outline">
+                <input type="email" id="mailemp" class="form-control" [(ngModel)]=mail/>
+                <label class="form-label" for="mailemp">Email</label>
+            </div>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+    <div id="row2" class="row">
+        <div class="col-sm">
+            <div id="group" class="form-outline input-group"> 
+                <input [type]=ctype id="contraemp" class="form-control" [(ngModel)]=contra/>
+                <label class="form-label" for="contraemp">Contraseña</label>
+                <button id="Mostrar" class="btnMostrar" (click)=Mostrar()>Mostrar</button>    
+            </div>
+        </div>
+    </div>
+    <div id="row2" class="row">
+        <div class="col-sm">
+            <div id="group" class="form-outline input-group"> 
+                <input [type]=ctype2 id="contraemp2" class="form-control" [(ngModel)]=contra2/>
+                <label class="form-label" for="contraemp2">Confirmar contraseña</label>
+                <button id="Mostrar" class="btnMostrar" (click)=Mostrar2()>Mostrar</button>
+            </div>
+        </div>
+    </div>
+    <div id="row2" class="row">
+        <div class="col-sm">
+            <select class="form-select" id="localidademp"  onchange="Relocate()" (input)=loc()>
+                <option value="" hidden selected>Localidad</option>
+                <option *ngFor="let item of Localidades" value={{item.LocalidadID}}>{{item.Descripcion}}</option>
+            </select>
+            <textarea id="ubicacion" class="form-control" placeholder="Puede ingresar su domicilio aqui o indicarlo por medio del mapa" rows="4" cols="50"></textarea>
+        </div>
+    </div>
+    <div id="row2" class="row">
+        <div class="col-sm">
+            <button id="btnubi" name="btnubi" onclick="ReGeo()">
+                <span class="" role="status" aria-hidden="true" id="spinnerubi">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-check" viewBox="0 0 16 16">
+                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                    </svg>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div id="row2" class="row">
+    </div>
+</div>

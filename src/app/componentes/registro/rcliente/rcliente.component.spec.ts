@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GenerarTurnoComponent } from './generar-turno.component';
+import { RclienteComponent } from './rcliente.component';
 
-describe('GenerarTurnoComponent', () => {
-  let component: GenerarTurnoComponent;
-  let fixture: ComponentFixture<GenerarTurnoComponent>;
+describe('RclienteComponent', () => {
+  let component: RclienteComponent;
+  let fixture: ComponentFixture<RclienteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GenerarTurnoComponent ]
+      declarations: [ RclienteComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GenerarTurnoComponent);
+    fixture = TestBed.createComponent(RclienteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

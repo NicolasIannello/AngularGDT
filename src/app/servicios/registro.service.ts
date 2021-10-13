@@ -25,4 +25,10 @@ export class RegistroService {
   crearEmp(dato:any):Observable<any>{
     return this.http.post(this.servidor+'/usuario/crear/empresa',dato,{'headers':this.header})
   }
+  Geocode(lat:any,lng:any):Observable<any>{
+    return this.http.get('https://us1.locationiq.com/v1/reverse.php?key=pk.c43cff0bb3812b9938b1d48adc16660a&lat='+lat+'&lon='+lng+'&format=json')
+  }
+  ReverseGeocode(ubi:any):Observable<any>{
+    return this.http.get('https://us1.locationiq.com/v1/search.php?key=pk.c43cff0bb3812b9938b1d48adc16660a&q='+ubi+'&format=json')
+  }
 }

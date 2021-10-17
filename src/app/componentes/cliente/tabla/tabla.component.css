@@ -1,0 +1,144 @@
+body{
+    overflow: hidden;
+}
+#fondo{
+    height: 100%;
+    width: 100.5%;
+    position:absolute;
+    top: 0;
+    left: 0;
+}
+#turnos{
+    background-color: rgb(255, 255, 255);
+    /*z-index: 1;*/
+    border-bottom-right-radius: 30% 85%;
+    border-top-right-radius: 30% 85%;
+    height:810px;
+    margin-left: 2%;
+}
+#pildora{
+    margin-top: 3%;
+    margin-left: 0%;
+}
+.soli{
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    font-size: 1.2rem;
+}
+/*TABLA----------------------------------------------*/
+.wi{
+    width: 5%;
+}
+.wih{
+    width: 10%;
+}
+.wic{
+    width: 15%;
+}
+.wiu{
+    width: 15%;
+}
+.my-custom-scrollbar {
+    position: relative;
+    height: 350px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+    width: 87%;
+}
+.thead-dark{
+    position:sticky; 
+    top:0;
+}
+/*BUSQUEDA--TURNO----------------------------------------------*/
+.selec{
+    width: 22%;
+    margin-left: 1%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+}
+.btn{
+    border: none;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    color: rgb(236, 236, 236);
+    font-weight: 600;
+    cursor: pointer;
+    background: rgb(1, 50, 67);
+    width: 15%;
+    height: 3rem;
+}
+.btn:hover{
+    color: rgb(236, 236, 236);
+    background: rgb(1, 50, 67);
+}
+.btn:active{
+    color: rgb(236, 236, 236);
+    background: rgb(34, 49, 63);
+}
+#Mapa{
+    height: 18rem;
+    width: 20rem;
+    margin-left: 1%;
+    margin-right: 10%;
+}
+.date{
+    border:1px solid black;
+    height: 18rem;
+    width: 20rem;
+}
+.sacar{
+    width: 60%;
+}
+.margin{
+    margin-top: 6%;
+    margin-bottom: 6%;
+}
+.eliminar{
+    width: 100%;
+    background-color:rgb(217, 30, 24);
+}
+.btnCuenta{
+    float: none;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 4%;
+    background: rgb(236, 236, 236);
+    color: rgb(1, 50, 67);
+    font-weight: 600;
+    width: 80%;
+    cursor: pointer;
+    text-align: center;
+}
+.btnCuenta:hover{
+    background: rgb(218, 223, 225);
+}
+.btnCuenta:active{
+    background: rgb(189, 195, 199);
+}
+#usernom{
+    margin-top: 80%;
+    margin-left: 20%;
+    margin-bottom: 50%;
+    font-size: 3rem;
+    color:rgb(189, 195, 199);
+}
+.mes{
+    text-align: center;
+    color:rgb(236, 236, 236);
+    background-color: rgb(34, 49, 63);
+    margin-top: 3.5%;
+}
+.dia{
+    margin-left: 4.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 12%;
+}
+.diaselected{
+    background-color: rgb(34, 49, 63);
+    color:rgb(236, 236, 236);
+}

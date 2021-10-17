@@ -1,0 +1,31 @@
+<div class="soli">Busqueda de turno:</div>
+<div class="row">
+    <select class="form-select selec"  id="servicio" (input)=serv()>
+        <option value="" hidden selected>Tipo de servicio</option>
+        <option *ngFor="let item of servicios" value={{item.ServicioID}}>{{item.Descripcion}}</option>
+    </select>
+    <select class="form-select selec" id="localidademp" (input)=loc()>
+        <option value="" hidden selected>Localidades</option>
+        <option *ngFor="let item of localidades" value={{item.LocalidadID}}>{{item.Descripcion}}</option>
+    </select>
+    <button id="busserv" class="btn" (click)=BServicio()>
+        <span [class]=spB role="status" aria-hidden="true" id="spinnerbuscar">{{spBtext}}</span>
+    </button>
+</div>
+<div class="row">
+    <div id="Mapa"></div>
+    <div id="calendario" class="selec date table-wrapper-scroll-y my-custom-scrollbar">
+        <div class="mes">{{nombreclicked}}</div>
+        <button *ngFor="let item of fechas" class="dia diaselected" (click)="mostrarfecha(item.dia)" >{{item.dia}}</button>
+    </div>
+    <div class="selec">
+        <span class="soli margin" id="horariosspan">Horarios del turno:</span>
+        <select class="form-select margin sacar"  id="horarios" (input)=hora()>
+            <option value="" hidden selected>Horarios</option>
+            <option *ngFor="let item of horarios" value={{item.Horario}}>{{item.Horario}}</option>
+        </select>
+        <button id="sacar" class="btn sacar margin" (click)=crearTurno()>
+            <span [class]=screar role="status" aria-hidden="true" id="spinnersacar">{{screartext}}</span>
+        </button>
+    </div>
+</div>

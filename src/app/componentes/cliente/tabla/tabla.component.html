@@ -1,0 +1,25 @@
+<div class="soli">Turnos solicitados:</div>
+<div class="table-wrapper-scroll-y my-custom-scrollbar" id="mostrarTabla">
+    <table class="table table-bordered table-striped table-hover tabla">
+        <thead class="thead-dark">
+            <tr>
+                <th>Codigo</th>
+                <th>Fecha</th>
+                <th>Comercio</th>
+                <th>Servicio</th>
+                <th>Horario Turno</th>
+                <th>Ubicacion</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let turno of Turnos">
+                <td>{{turno.Codigo}}</td>
+                <td>{{turno.Fecha}}</td>
+                <td>{{turno.Comercio}}</td>
+                <td>{{turno.Servicio}}</td>
+                <td>{{turno['Horario Turno']}}</td>
+                <td>{{turno.Ubicacion}}</td>
+                <button id=eliminar{{turno.Codigo}} class="btn eliminar" (click)="Eliminar(turno.Codigo)"><span class="" role="status" aria-hidden="true" id=spinnerelim{{turno.Codigo}}>Eliminar</span></button>
+            </tr>
+        </thead> 
+    </table> 
+</div>

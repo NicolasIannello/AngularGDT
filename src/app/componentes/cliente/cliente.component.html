@@ -1,0 +1,10 @@
+<div class="row" id="pildora">
+    <div id="turnos" class="col-md-9 mx-auto">
+        <app-tabla [Turnos]="Turnos"></app-tabla>
+        <app-crear (CTurnos)="cambiarTurnos($event)"></app-crear>
+    </div>
+    <div id="user" class="col-md-2 mx-auto">
+        <div id="usernom">{{User[0].NombreUsuario}}</div>
+        <button class="mx-auto btnCuenta" id="cuenta" name="cuenta" (click)=cerrarsesion()>Cerrar sesion</button>
+    </div> 
+</div>

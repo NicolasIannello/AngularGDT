@@ -15,6 +15,9 @@ import { EmpresaComponent } from './componentes/empresa/empresa.component';
 import { RempresaComponent } from './componentes/registro/rempresa/rempresa.component';
 import { RclienteComponent } from './componentes/registro/rcliente/rcliente.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
+import { ClienteComponent } from './componentes/cliente/cliente.component';
+import { TablaComponent } from './componentes/cliente/tabla/tabla.component';
+import { CrearComponent } from './componentes/cliente/crear/crear.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { RegistroComponent } from './componentes/registro/registro.component';
     EmpresaComponent,
     RempresaComponent,
     RclienteComponent,
-    RegistroComponent
+    RegistroComponent,
+    ClienteComponent,
+    TablaComponent,
+    CrearComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@
                 <th>Ubicacion</th>
                 <th></th>
             </tr>
+        </thead>
             <tr *ngFor="let turno of Turnos">
                 <td>{{turno.Codigo}}</td>
                 <td>{{turno.Fecha}}</td>
@@ -20,6 +21,6 @@
                 <td>{{turno.Ubicacion}}</td>
                 <button id=eliminar{{turno.Codigo}} class="btn eliminar" (click)="Eliminar(turno.Codigo)"><span class="" role="status" aria-hidden="true" id=spinnerelim{{turno.Codigo}}>Eliminar</span></button>
             </tr>
-        </thead> 
+         
     </table> 
 </div>

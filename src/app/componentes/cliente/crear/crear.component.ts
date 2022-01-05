@@ -113,6 +113,7 @@ export class CrearComponent implements OnInit {
 
               this.fechas=[]
               this.api.diaServicios(formData).subscribe(resp=>{
+                this.cont=0;
                 //var cantpasado=0
                 var diapasado=0
                 let mes={mes:""};
@@ -142,7 +143,7 @@ export class CrearComponent implements OnInit {
                     }
                   }
                 }
-                console.log(resp);
+                //console.log(resp);
               })
               //console.log(this.fechas);
             });
@@ -210,7 +211,7 @@ export class CrearComponent implements OnInit {
   }
   armarCalendario(diapasado:any,resp:any,datomes:any,i:any,cant:any,mes:any,messig:any,cantpasada:any){
     if(this.mes!=mes && new Date(resp[i].Dia).getDate()+1>=cant){
-      console.log('1er '+(new Date(resp[i].Dia).getDate()+1)+' '+i+' '+' '+cant)
+      //console.log('1er '+(new Date(resp[i].Dia).getDate()+1)+' '+i+' '+' '+cant)
       var x = {mes: messig}; 
       this.fechas.push(x);
       var y = {dia: 'D',class:"dia",fecha: "semana"}; this.fechas.push(y);
@@ -231,10 +232,10 @@ export class CrearComponent implements OnInit {
       }
       this.mes=messig
     }else if (this.mes!=mes){
-      console.log('2do '+(new Date(resp[i].Dia).getDate()+1)+' '+new Date(resp[i].Dia).getDay())
+      //console.log('2do '+(new Date(resp[i].Dia).getDate()+1)+' '+new Date(resp[i].Dia).getDay())
       var hopl=new Date(resp[i].Dia)
       hopl.setDate(hopl.getDate() - hopl.getDate() +1 )
-      console.log( hopl.getDate());
+      //console.log( hopl.getDate());
       
       var x = {mes: mes}; 
       this.fechas.push(x);

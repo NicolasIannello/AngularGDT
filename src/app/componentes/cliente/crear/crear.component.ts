@@ -7,7 +7,7 @@ import { ClienteService } from 'src/app/servicios/cliente.service';
   styleUrls: ['./crear.component.css']
 })
 export class CrearComponent implements OnInit {
-  ID: string = JSON.parse(localStorage.getItem('ID') || '{}');
+  //ID: string = JSON.parse(localStorage.getItem('ID') || '{}');
   servicios: Array<any> = [];
   localidades: Array<any> = [];
   horarios:Array<any>=[];
@@ -32,6 +32,13 @@ export class CrearComponent implements OnInit {
   spBtext:string="Buscar servicios";
   screar:string="";
   screartext:string="Sacar turno"
+
+  mes:string="a";
+  sigdia:any='';
+  diacss:string="dia"
+  diaselecss:string="dia diaselected"
+  claseant:string=""
+  cont:number=0;
 
   constructor(public api:ClienteService) { }
 
@@ -106,31 +113,38 @@ export class CrearComponent implements OnInit {
 
               this.fechas=[]
               this.api.diaServicios(formData).subscribe(resp=>{
+                //var cantpasado=0
+                var diapasado=0
+                let mes={mes:""};
+                var ultmes="x";
+                //console.log(resp);
                 for (let i = 0; i < resp.length; i++) {
-                  let datomes={mes:'',cant:0,mesnum:0,dia:''};
                   let x=new Date(); let hoy=x.getDate() 
-                  if( ( hoy<new Date(resp[i].Dia).getDate() && new Date(x).getMonth()==new Date(resp[i].Dia).getMonth() ) || new Date(x).getMonth()!=new Date(resp[i].Dia).getMonth() ){
-
+                  let datomes={dia:hoy,class:"",fecha:""};
+                  //console.log(hoy);
+                  
+                  if( ( hoy<=new Date(resp[i].Dia).getDate() && new Date(x).getMonth()<=new Date(resp[i].Dia).getMonth() && new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() ) /*|| new Date(x).getMonth()!=new Date(resp[i].Dia).getMonth()*/ ){
+                    //console.log('entre hoy: '+hoy+' fecha: '+new Date(resp[i].Dia).getDate()+' mes hoy '+new Date(x).getMonth()+' mes fecha '+new Date(resp[i].Dia).getMonth());
+                    
                     switch(new Date(resp[i].Dia).getMonth()){
-                      case 0: datomes ={mes:"Enero",cant:31,mesnum:1,dia: resp[i].Dia}; break;
-                      case 1: datomes ={mes:"Febrero",cant:28,mesnum:2,dia: resp[i].Dia}; break;
-                      case 2: datomes ={mes:"Marzo",cant:31,mesnum:3,dia: resp[i].Dia}; break;
-                      case 3: datomes ={mes:"Abril",cant:30,mesnum:4,dia: resp[i].Dia}; break;
-                      case 4: datomes ={mes:"Mayo",cant:31,mesnum:5,dia: resp[i].Dia}; break;
-                      case 5: datomes ={mes:"Junio",cant:30,mesnum:6,dia: resp[i].Dia}; break;
-                      case 6: datomes ={mes:"Julio",cant:31,mesnum:7,dia: resp[i].Dia}; break;
-                      case 7: datomes ={mes:"Agosto",cant:31,mesnum:8,dia: resp[i].Dia}; break;
-                      case 8: datomes ={mes:"Septiembre",cant:30,mesnum:9,dia: resp[i].Dia}; break;
-                      case 9: datomes ={mes:"Octubre",cant:31,mesnum:10,dia: resp[i].Dia}; break;
-                      case 10: datomes ={mes:"Noviembre",cant:30,mesnum:11,dia: resp[i].Dia}; break;
-                      case 11: datomes ={mes:"Diciembre",cant:31,mesnum:12,dia: resp[i].Dia}; break;
+                      case 0: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Enero","Febrero",31);break;
+                      case 1: diapasado=this.armarCalendario(diapasado,resp,datomes,i,28,"Febrero","Marzo",31);break;
+                      case 2: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Marzo","Abril",28);break;
+                      case 3: diapasado=this.armarCalendario(diapasado,resp,datomes,i,30,"Abril","Mayo",31);break;
+                      case 4: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Mayo","Junio",30);break;
+                      case 5: diapasado=this.armarCalendario(diapasado,resp,datomes,i,30,"Junio","Julio",31);break;
+                      case 6: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Julio","Agosto",30);break;
+                      case 7: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Agosto","Septiembre",31);break;
+                      case 8: diapasado=this.armarCalendario(diapasado,resp,datomes,i,30,"Septiembre","Octubre",31);break;
+                      case 9: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Octubre","Noviembre",30);break;
+                      case 10: diapasado=this.armarCalendario(diapasado,resp,datomes,i,30,"Noviembre","Diciembre",31);break;
+                      case 11: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Diciembre","Enero",30);break;
                     }
-                    this.fechas.push(datomes);
                   }
                 }
-
+                console.log(resp);
               })
-
+              //console.log(this.fechas);
             });
 
             this.marcadores.push(marker)
@@ -142,15 +156,25 @@ export class CrearComponent implements OnInit {
       })
     }
   }
-  mostrarfecha(dia:any){
-    this.dia=dia
-    var dato=new FormData();
-    dato.append("fecha",dia);
-    dato.append("nom",this.nombreclicked);
-
-    this.api.horarios(dato).subscribe(resp=>{
-      this.horarios=resp      
-    })
+  mostrarfecha(dia:any,clase:any){
+    if(this.dia!=''){
+      document.getElementById(this.dia)!.className=this.claseant;
+    }
+    if(dia==""){
+      alert("Dia no disponible")
+      this.horarios=[]
+    }else{
+      this.dia=dia
+      this.claseant=clase
+    
+      var dato=new FormData();
+      dato.append("fecha",dia);
+      dato.append("nom",this.nombreclicked);
+  
+      this.api.horarios(dato).subscribe(resp=>{
+        this.horarios=resp      
+      })
+    }
   }
   hora(){
     this.horario=(<HTMLInputElement>document.getElementById("horarios")).value
@@ -164,17 +188,17 @@ export class CrearComponent implements OnInit {
     dato.append("nom",this.nombreclicked);
     dato.append("fecha",this.dia);
     dato.append("horario",this.horario);
-    dato.append("ID",this.ID);
+    dato.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
 
     this.api.crearTurno(dato).subscribe(resp=>{
       if(resp=="Se han agotado los cupos para ese horario"){
         alert("Se han agotado los cupos para ese horario");	
         this.horarios=[]	
-        this.mostrarfecha(this.dia)
+        this.mostrarfecha(this.dia,'dia diaselected')
       }else{
         alert(resp);
         var dato=new FormData();
-        dato.append("ID",this.ID);
+        dato.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
         this.api.cargarTurnos(dato).subscribe(resp=>{
           this.Turnos=resp
           this.CTurnos.emit(this.Turnos);
@@ -183,5 +207,124 @@ export class CrearComponent implements OnInit {
       this.screar="";
       this.screartext="Sacar turno";
     })
+  }
+  armarCalendario(diapasado:any,resp:any,datomes:any,i:any,cant:any,mes:any,messig:any,cantpasada:any){
+    if(this.mes!=mes && new Date(resp[i].Dia).getDate()+1>=cant){
+      console.log('1er '+(new Date(resp[i].Dia).getDate()+1)+' '+i+' '+' '+cant)
+      var x = {mes: messig}; 
+      this.fechas.push(x);
+      var y = {dia: 'D',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'L',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'M',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'M',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'J',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'V',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'S',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      /*@ts-ignore*/switch (new Date(resp[i].Dia).getDay()) {
+        /*@ts-ignore*/case 6: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+        /*@ts-ignore*/case 5: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+        /*@ts-ignore*/case 4: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+        /*@ts-ignore*/case 3: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+        /*@ts-ignore*/case 2: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+        /*@ts-ignore*/case 1: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+        case 0: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y); break;
+      }
+      this.mes=messig
+    }else if (this.mes!=mes){
+      console.log('2do '+(new Date(resp[i].Dia).getDate()+1)+' '+new Date(resp[i].Dia).getDay())
+      var hopl=new Date(resp[i].Dia)
+      hopl.setDate(hopl.getDate() - hopl.getDate() +1 )
+      console.log( hopl.getDate());
+      
+      var x = {mes: mes}; 
+      this.fechas.push(x);
+      var y = {dia: 'D',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'L',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'M',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'M',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'J',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'V',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      y = {dia: 'S',class:"dia",fecha: "semana"}; this.fechas.push(y);
+      if(this.cont==0){
+        /*@ts-ignore*/switch (new Date(resp[i].Dia).getDay()) {  
+        /*@ts-ignore*/case 6: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+        /*@ts-ignore*/case 5: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+        /*@ts-ignore*/case 4: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+        /*@ts-ignore*/case 3: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+        /*@ts-ignore*/case 2: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+        /*@ts-ignore*/case 1: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+          case 0: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y); break;
+        }
+        this.cont++;
+      }else{
+        /*@ts-ignore*/switch (hopl.getDay()-1) {  
+          /*@ts-ignore*/case 6: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+          /*@ts-ignore*/case 5: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+          /*@ts-ignore*/case 4: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+          /*@ts-ignore*/case 3: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+          /*@ts-ignore*/case 2: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+          /*@ts-ignore*/case 1: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y);
+          case 0: y = {dia: '/',class:"dia",fecha: "fill"}; this.fechas.push(y); break;
+        } 
+      }
+      this.mes=mes
+    }
+
+    if(i<resp.length-1){
+      this.sigdia=new Date(resp[i+1].Dia).getDate()+1
+    }
+    if(new Date(resp[i].Dia).getDate()+1>cant){      
+      datomes = {dia: 1,class:"dia diaselected",fecha: resp[i].Dia}; 
+      this.fechas.push(datomes);
+      /*for (let j = 2; j < this.sigdia; j++) {                              
+        datomes = {dia: j,class:"dia",fecha: ""};
+        this.fechas.push(datomes); 
+      }*/
+    }else{
+      if(diapasado>new Date(resp[i].Dia).getDate()+1){
+        //console.log(diapasado+' '+(new Date(resp[i].Dia).getDate()+1));
+        let n;
+        if(cantpasada>=diapasado){
+          n=1;
+        }else{
+          n=2;
+        }
+        //alert(new Date(resp[i].Dia).getDate()+1+' '+cantpasada+' '+diapasado+' ')
+        for (n; n < new Date(resp[i].Dia).getDate()+1; n++) { 
+          datomes = {dia: n,class:"dia",fecha: ""};
+          this.fechas.push(datomes); 
+        }
+        datomes = {dia: new Date(resp[i].Dia).getDate()+1,class:"dia diaselected",fecha: resp[i].Dia};
+        this.fechas.push(datomes);
+        if(i==resp.length-1 && new Date(resp[i].Dia).getDate()+1<cant){
+          for (let j = new Date(resp[i].Dia).getDate()+2; j <= cant; j++) {
+            datomes = {dia: j,class:"dia",fecha: ""};
+            this.fechas.push(datomes); 
+          }
+        }else if(this.sigdia>new Date(resp[i].Dia).getDate()+1){
+          for (let j = new Date(resp[i].Dia).getDate()+2; j < this.sigdia; j++) {      
+            datomes = {dia: j,class:"dia",fecha: ""};
+            this.fechas.push(datomes); 
+          }
+        }
+      }else{
+        datomes = {dia: new Date(resp[i].Dia).getDate()+1,class:"dia diaselected",fecha: resp[i].Dia};
+        this.fechas.push(datomes);
+        //alert(new Date(resp[i].Dia).getDate()+1+' '+i+' '+(resp.length-1)+' '+cant)
+        if(i==resp.length-1 && new Date(resp[i].Dia).getDate()+1<cant){
+          for (let j = new Date(resp[i].Dia).getDate()+2; j <= cant; j++) {
+            datomes = {dia: j,class:"dia",fecha: ""};
+            this.fechas.push(datomes); 
+          }
+        }else if(this.sigdia>new Date(resp[i].Dia).getDate()+1){
+          for (let j = new Date(resp[i].Dia).getDate()+2; j < this.sigdia; j++) {                              
+            datomes = {dia: j,class:"dia",fecha: ""};
+            this.fechas.push(datomes); 
+          }
+        }
+      }
+    }
+    diapasado=new Date(resp[i].Dia).getDate()+1
+    return diapasado
   }
 }

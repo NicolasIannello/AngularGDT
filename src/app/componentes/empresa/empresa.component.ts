@@ -12,7 +12,7 @@ export class EmpresaComponent implements OnInit {
 	User: Array<any> = [{ NombreUsuario: "User" }];
 	Turnos: Array<any> = [];
 	Clientes: Array<any> = [];
-	ID: string = JSON.parse(localStorage.getItem('ID') || '{}');
+	//ID: string = JSON.parse(localStorage.getItem('ID') || '{}');
 
 	servicio: string = "";
 	fechafin: string = "";
@@ -57,7 +57,7 @@ export class EmpresaComponent implements OnInit {
 		)
 
 		const formData = new FormData
-		formData.append("ID", this.ID);
+		formData.append("ID", JSON.parse(localStorage.getItem('ID') || '{}'));
 
 		this.api.traerNombre(formData).subscribe(resp =>
 			this.User = resp
@@ -103,7 +103,7 @@ export class EmpresaComponent implements OnInit {
 			formData.append("HoraFin", this.horafin);
 			formData.append("DuracionMin", this.duracionmin);
 			formData.append("Capacidad", this.capacidad);
-			formData.append("ID", this.ID);
+			formData.append("ID", JSON.parse(localStorage.getItem('ID') || '{}'));
 
 			this.api.crearTurno(formData).subscribe(resp => {
 				if (resp == "superpuesto") {
@@ -136,7 +136,7 @@ export class EmpresaComponent implements OnInit {
 				const formData = new FormData
 				formData.append("dato", this.datoelim);
 				formData.append("tipo", (<HTMLInputElement>document.getElementById("tipoelim")).value);
-				formData.append("ID", this.ID);
+				formData.append("ID", JSON.parse(localStorage.getItem('ID') || '{}'));
 
 				this.api.Eliminar(formData).subscribe((resp) => {
 					if (resp == "no encontrado") {
@@ -175,7 +175,7 @@ export class EmpresaComponent implements OnInit {
 			formData.append("servicio",this.serviciocarg);
 			formData.append("time",this.timecarg);
 			formData.append("cliente",this.cliecarg);
-			formData.append("ID",this.ID);
+			formData.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
 
 			this.api.crearCliente(formData).subscribe(resp=>{
 				if(resp=="Usuario no encontrado"  || resp=="No se encontro un turno disponible" || resp=="Ya existe un turno vinculado a esa cuenta en dicho horario"){

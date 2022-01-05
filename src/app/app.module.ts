@@ -18,6 +18,7 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { ClienteComponent } from './componentes/cliente/cliente.component';
 import { TablaComponent } from './componentes/cliente/tabla/tabla.component';
 import { CrearComponent } from './componentes/cliente/crear/crear.component';
+import { BotonDirective } from './directivas/boton.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CrearComponent } from './componentes/cliente/crear/crear.component';
     RegistroComponent,
     ClienteComponent,
     TablaComponent,
-    CrearComponent
+    CrearComponent,
+    BotonDirective
   ],
   imports: [
     BrowserModule,

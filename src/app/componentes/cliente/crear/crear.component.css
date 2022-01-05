@@ -133,13 +133,32 @@ body{
     margin-top: 3.5%;
 }
 .dia{
-    margin-left: 4.5%;
-    margin-right: 4.5%;
+    margin-left: 1%;
+    margin-right: 1%;
     margin-top: 1%;
     margin-bottom: 1%;
-    width: 90%;
+    width: 12%;
+    height: 12%;
+    background-color: rgb(236, 236, 236); 
+    color:rgb(34, 49, 63);
+    border:1px solid black;
 }
 .diaselected{
     background-color: rgb(34, 49, 63);
+    color:rgb(236, 236, 236);
+}
+.dia2{
+    background-color: rgb(190, 4, 4); 
+    color:rgb(236, 236, 236);
+}
+.my-custom-scrollbar {
+    position: relative;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+}
+.diaclicked{
+    background-color: rgb(27, 163, 156) !important;
     color:rgb(236, 236, 236);
 }

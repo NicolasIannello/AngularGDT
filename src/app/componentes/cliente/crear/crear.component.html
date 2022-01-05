@@ -14,10 +14,34 @@
 </div>
 <div class="row">
     <div id="Mapa"></div>
-    <div id="calendario" class="selec date table-wrapper-scroll-y my-custom-scrollbar">
+    <!--<div id="calendario" class="selec date table-wrapper-scroll-y my-custom-scrollbar">
         <div class="mes">{{nombreclicked}}</div>
         <button *ngFor="let item of fechas" class="dia diaselected" (click)="mostrarfecha(item.dia)" >{{item.dia}}</button>
-    </div>
+    </div>-->
+    <div id="calendario" class="selec date table-wrapper-scroll-y my-custom-scrollbar" style="text-align: left;">
+        <div class="mes">{{nombreclicked}}</div>
+        <span *ngFor="let item of fechas">
+          <div *ngIf="item.mes; then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>
+            <div class="mes">{{item.mes}}</div>
+          </ng-template>
+          <ng-template #elseBlock>
+            <div *ngIf="item.fecha=='semana'; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              <button class='dia dia2' [id]=item.fecha>{{item.dia}}</button>
+            </ng-template>
+            <ng-template #elseBlock>
+              <div *ngIf="item.class=='dia'; then thenBlock else elseBlock"></div>
+              <ng-template #thenBlock>
+                <button [class]=diacss (click)="mostrarfecha(item.fecha,item.class)" [id]=item.fecha>{{item.dia}}</button>
+              </ng-template>
+              <ng-template #elseBlock>
+                <button appBoton [class]=diaselecss (click)="mostrarfecha(item.fecha,item.class)" [id]=item.fecha>{{item.dia}}</button>
+              </ng-template>          
+            </ng-template>
+          </ng-template>
+        </span>
+      </div>
     <div class="selec">
         <span class="soli margin" id="horariosspan">Horarios del turno:</span>
         <select class="form-select margin sacar"  id="horarios" (input)=hora()>

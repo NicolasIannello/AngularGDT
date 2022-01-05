@@ -8,7 +8,7 @@ import { ClienteService } from 'src/app/servicios/cliente.service';
   styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent implements OnInit {
-  ID: string = JSON.parse(localStorage.getItem('ID') || '{}');
+  //ID: string = JSON.parse(localStorage.getItem('ID') || '{}');
   User: Array<any> = [{ NombreUsuario: "User" }];
   Turnos:Array<any>=[];
 
@@ -20,7 +20,7 @@ export class ClienteComponent implements OnInit {
 			this.router.navigate(['']);
 		}
 		const formData = new FormData
-		formData.append("ID", this.ID);
+		formData.append("ID", JSON.parse(localStorage.getItem('ID') || '{}'));
 
     this.api.traernom(formData).subscribe(resp=>{
       this.User=resp;

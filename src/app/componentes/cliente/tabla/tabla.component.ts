@@ -8,7 +8,7 @@ import { ClienteService } from 'src/app/servicios/cliente.service';
 })
 export class TablaComponent implements OnInit {
   @Input() Turnos!: Array<any>;
-  ID: string = JSON.parse(localStorage.getItem('ID') || '{}');
+  //ID: string = JSON.parse(localStorage.getItem('ID') || '{}');
 
   constructor(public api:ClienteService) { }
 
@@ -18,12 +18,12 @@ export class TablaComponent implements OnInit {
     if(confirm('Esta por eliminar un turno. Presione aceptar para continuar')){
       var dato=new FormData();
       dato.append("IDtce",id);
-      dato.append("IDclie",this.ID);
+      dato.append("IDclie",JSON.parse(localStorage.getItem('ID') || '{}'));
 
       this.api.Eliminar(dato).subscribe(resp=>{
         alert(resp);
         var dato=new FormData();
-	      dato.append("ID",this.ID);
+	      dato.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
         this.api.cargarTurnos(dato).subscribe(resp=>{
           this.Turnos=resp
         })

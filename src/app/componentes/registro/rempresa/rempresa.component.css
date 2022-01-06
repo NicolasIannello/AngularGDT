@@ -252,3 +252,9 @@ button.btnMostrar:active{
     height: 610%;
     width: 80%;
 }
+.QR{
+    position: absolute;
+    left: 11%;
+    top: 45%;
+    height: 200px;
+}

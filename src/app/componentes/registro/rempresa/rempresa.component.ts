@@ -82,7 +82,7 @@ export class RempresaComponent implements OnInit {
 			alert("Complete todos los campos");
 		}else if(this.contra!=this.contra2){
 			alert("Las contraseñas no coinciden");
-		}else if(/*(this.mail.includes("@") && this.mail.includes(".com"))*/this.mail.match(/^(w{3}\.)?([A-z]||[0-9])+@([A-z]||[0-9]){1,6}\.com(\.[a-z]{2})?$/g) ){
+		}else if(/*(this.mail.includes("@") && this.mail.includes(".com"))*/this.mail.match(/^(w{3}\.)?([A-z]||[0-9])+@([A-z]||[0-9]){1,10}\.com(\.[a-z]{2})?$/g) ){
 			//document.getElementById('crearemp').disabled=true;
 			this.spinner = "spinner-border spinner-border-sm";
 			this.spinnertext = "";

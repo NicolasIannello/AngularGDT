@@ -1,5 +1,10 @@
 <div class="row" id="pildora">
     <div id="turnos" class="col-md-9 mx-auto">
+        <span class="QR">
+            ¿Problemas para sacar <br>turnos?<br>
+            <img src="assets/QRcliente.PNG"/><br>
+            ¡Escanea este QR!
+        </span>
         <app-tabla [Turnos]="Turnos"></app-tabla>
         <app-crear (CTurnos)="cambiarTurnos($event)"></app-crear>
     </div>

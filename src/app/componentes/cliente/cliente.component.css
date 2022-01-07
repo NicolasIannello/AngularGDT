@@ -142,3 +142,9 @@ body{
     background-color: rgb(34, 49, 63);
     color:rgb(236, 236, 236);
 }
+.QR{
+    position: absolute;
+    left: 87%;
+    top: 32%;
+    height: 200px;
+}

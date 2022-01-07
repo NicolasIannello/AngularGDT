@@ -294,3 +294,9 @@ width: 15%;
     font-size: 3rem;
     color:rgb(189, 195, 199);
 }
+.QR{
+    position: absolute;
+    left: 87%;
+    top: 32%;
+    height: 200px;
+}

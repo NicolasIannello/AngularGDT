@@ -21,7 +21,9 @@
             <a href="">Olvide mi contraseña</a>    
         </div>
         <div id="marbot">
-            <button class="col-md-4 mx-auto btnRegister" id="log" (click)=EnviarIngreso()>Ingresar</button>
+            <button class="col-md-4 mx-auto btnRegister" id="log" (click)=EnviarIngreso()>
+                <span [class]=spinner role="status" aria-hidden="true" id="spinnerclie">{{spinnertext}}</span>
+            </button>
             <br>
             <span id="resultado"></span>
         </div>

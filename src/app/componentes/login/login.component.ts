@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
     typecontra:string;
     contra:string;
     user:string;
+    spinnertext:string="Ingresar";
+    spinner:string="";
 
     constructor(public api:LoginService, private router: Router) { 
         this.typecontra="password";
@@ -36,6 +38,8 @@ export class LoginComponent implements OnInit {
     }
 
     EnviarIngreso(){
+        this.spinner="spinner-border spinner-border-sm";
+        this.spinnertext="";
         const formData= new FormData
         formData.append("user", this.user);
         formData.append("contra", this.contra);
@@ -51,6 +55,8 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/Empresa']);
             }else{
                 alert(texto);
+                this.spinner="";
+                this.spinnertext="Ingresar";
             }
         })
     }

@@ -162,3 +162,9 @@ body{
     background-color: rgb(27, 163, 156) !important;
     color:rgb(236, 236, 236);
 }
+.cel{
+    width: 60%;
+}
+.celgroup{
+    height: 38px;
+}

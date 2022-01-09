@@ -40,6 +40,9 @@ export class CrearComponent implements OnInit {
   claseant:string=""
   cont:number=0;
 
+  check:boolean=false;
+  celular:string="";
+
   constructor(public api:ClienteService) { }
 
   ngOnInit(): void {
@@ -191,23 +194,42 @@ export class CrearComponent implements OnInit {
     dato.append("horario",this.horario);
     dato.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
 
-    this.api.crearTurno(dato).subscribe(resp=>{
-      if(resp=="Se han agotado los cupos para ese horario"){
-        alert("Se han agotado los cupos para ese horario");	
-        this.horarios=[]	
-        this.mostrarfecha(this.dia,'dia diaselected')
-      }else{
-        alert(resp);
-        var dato=new FormData();
-        dato.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
-        this.api.cargarTurnos(dato).subscribe(resp=>{
-          this.Turnos=resp
-          this.CTurnos.emit(this.Turnos);
-        })
-      }
+    if(this.check==true && this.celular.match(/^[0-9]{2,3}\ ?[0-9]{3,4}(\ |-)?[0-9]{4}$/g)){
+      //this.celular="+549"+this.celular;
+      dato.append("cel","+549"+this.celular);
+      dato.append("msgenv",this.check.toString());
+    }else if(this.check==true){
+      alert("Ingrese un numero valido");
       this.screar="";
       this.screartext="Sacar turno";
-    })
+    }else if(this.check==false){
+      dato.append("cel","this.celular");
+      dato.append("msgenv",this.check.toString());
+    }
+
+    if(this.horario=="" && this.check==false || (this.check==true && this.celular.match(/^[0-9]{2,3}\ ?[0-9]{3,4}(\ |-)?[0-9]{4}$/g))){
+      alert("complete todos los campos");
+      this.screar="";
+      this.screartext="Sacar turno";
+    }else{
+      this.api.crearTurno(dato).subscribe(resp=>{
+        if(resp=="Se han agotado los cupos para ese horario"){
+          alert("Se han agotado los cupos para ese horario");	
+          this.horarios=[]	
+          this.mostrarfecha(this.dia,'dia diaselected')
+        }else{
+          alert(resp);
+          var dato=new FormData();
+          dato.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
+          this.api.cargarTurnos(dato).subscribe(resp=>{
+            this.Turnos=resp
+            this.CTurnos.emit(this.Turnos);
+          })
+        }
+        this.screar="";
+        this.screartext="Sacar turno";
+      })
+    }
   }
   armarCalendario(diapasado:any,resp:any,datomes:any,i:any,cant:any,mes:any,messig:any,cantpasada:any){
     if(this.mes!=mes && new Date(resp[i].Dia).getDate()+1>=cant){

@@ -48,6 +48,16 @@
             <option value="" hidden selected>Horarios</option>
             <option *ngFor="let item of horarios" value={{item.Horario}}>{{item.Horario}}</option>
         </select>
+        <input type="checkbox" id="noti"  [(ngModel)]=check> Recibir notificacion via WhatsApp
+        <div *ngIf="check==true; then thenBlock"></div>
+        <ng-template #thenBlock>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text celgroup" >+54 9 </span>
+            </div>
+            <input class="form-control cel celgroup" type="text" id="cel" [(ngModel)]="celular" placeholder="Ingrese su numero">
+          </div>
+        </ng-template>
         <button id="sacar" class="btn sacar margin" (click)=crearTurno()>
             <span [class]=screar role="status" aria-hidden="true" id="spinnersacar">{{screartext}}</span>
         </button>

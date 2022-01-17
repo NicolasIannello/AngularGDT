@@ -116,6 +116,7 @@ export class CrearComponent implements OnInit {
 
               this.fechas=[]
               this.api.diaServicios(formData).subscribe(resp=>{
+                this.mes='a';
                 this.cont=0;
                 //var cantpasado=0
                 var diapasado=0
@@ -126,9 +127,10 @@ export class CrearComponent implements OnInit {
                   let x=new Date(); let hoy=x.getDate() 
                   let datomes={dia:hoy,class:"",fecha:""};
                   //console.log(hoy);
-                  
-                  if( ( hoy<=new Date(resp[i].Dia).getDate() && new Date(x).getMonth()<=new Date(resp[i].Dia).getMonth() && new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() ) /*|| new Date(x).getMonth()!=new Date(resp[i].Dia).getMonth()*/ ){
-                    //console.log('entre hoy: '+hoy+' fecha: '+new Date(resp[i].Dia).getDate()+' mes hoy '+new Date(x).getMonth()+' mes fecha '+new Date(resp[i].Dia).getMonth());
+
+                  if( new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() && (hoy<=new Date(resp[i].Dia).getDate() && new Date(x).getMonth()==new Date(resp[i].Dia).getMonth()) || (new Date(x).getMonth()<new Date(resp[i].Dia).getMonth()) ){
+                  //if( ( hoy<=new Date(resp[i].Dia).getDate() && new Date(x).getMonth()<=new Date(resp[i].Dia).getMonth() && new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() ) /*|| new Date(x).getMonth()!=new Date(resp[i].Dia).getMonth()*/ ){
+                    //console.log('entre hoy: '+hoy+' fecha: '+(new Date(resp[i].Dia).getDate()+1)+' mes hoy '+new Date(x).getMonth()+' mes fecha '+new Date(resp[i].Dia).getMonth());
                     
                     switch(new Date(resp[i].Dia).getMonth()){
                       case 0: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Enero","Febrero",31);break;
@@ -232,7 +234,8 @@ export class CrearComponent implements OnInit {
     }
   }
   armarCalendario(diapasado:any,resp:any,datomes:any,i:any,cant:any,mes:any,messig:any,cantpasada:any){
-    if(this.mes!=mes && new Date(resp[i].Dia).getDate()+1>=cant){
+    //console.log('Dia '+(new Date(resp[i].Dia).getDate()+1)+' '+i+' '+' '+cant+' '+new Date(resp[i].Dia).getMonth())
+    if( new Date(resp[i].Dia).getDate()+1>cant){
       //console.log('1er '+(new Date(resp[i].Dia).getDate()+1)+' '+i+' '+' '+cant)
       var x = {mes: messig}; 
       this.fechas.push(x);

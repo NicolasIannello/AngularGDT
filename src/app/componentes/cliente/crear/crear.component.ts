@@ -209,7 +209,7 @@ export class CrearComponent implements OnInit {
       dato.append("msgenv",this.check.toString());
     }
 
-    if(this.horario=="" && this.check==false || (this.check==true && this.celular.match(/^[0-9]{2,3}\ ?[0-9]{3,4}(\ |-)?[0-9]{4}$/g))){
+    if(this.horario=="" && (this.check==false || (this.check==true && this.celular.match(/^[0-9]{2,3}\ ?[0-9]{3,4}(\ |-)?[0-9]{4}$/g)))){
       alert("complete todos los campos");
       this.screar="";
       this.screartext="Sacar turno";

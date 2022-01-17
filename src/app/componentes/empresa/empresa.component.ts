@@ -112,7 +112,7 @@ export class EmpresaComponent implements OnInit {
 					alert('Turnos creados')
 					this.Turnos = resp
 				}
-				(<HTMLInputElement>document.getElementById('generar')).disabled = true;
+				(<HTMLInputElement>document.getElementById('generar')).disabled = false;
 				this.spinnerclass = "";
 				this.spinnertext = "Generar turnos";
 			})

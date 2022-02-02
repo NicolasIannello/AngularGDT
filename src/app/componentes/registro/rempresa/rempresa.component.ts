@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistroService } from 'src/app/servicios/registro.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-rempresa',
@@ -79,9 +80,9 @@ export class RempresaComponent implements OnInit {
 	}
 	crearEmp(){
 		if(this.nombre=="" || this.localidad=="" || this.mail=="" || this.contra=="" || this.contra2=="" || this.ubicacion==""){
-			alert("Complete todos los campos");
+			Swal.fire({title:'Complete todos los campos',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 		}else if(this.contra!=this.contra2){
-			alert("Las contraseñas no coinciden");
+			Swal.fire({title:'Las contraseñas no coinciden',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 		}else if(/*(this.mail.includes("@") && this.mail.includes(".com"))*/this.mail.match(/^(w{3}\.)?([A-z]||[0-9])+@([A-z]||[0-9]){1,10}\.com(\.[a-z]{2})?$/g) ){
 			//document.getElementById('crearemp').disabled=true;
 			this.spinner = "spinner-border spinner-border-sm";
@@ -98,10 +99,13 @@ export class RempresaComponent implements OnInit {
 			this.api.crearEmp(formData).subscribe(resp=>{
 				this.spinner = "";
 				this.spinnertext = "Crear cuenta";
-				alert(resp)
+				Swal.fire({title:resp,confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
+				if(resp=="Cuenta de empresa creada con exito"){
+					this.router.navigate(['/']);
+				  }
 			})
 		}else{
-			alert("Ingrese un email valido");
+			Swal.fire({title:'Ingrese un email valido',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 		}
 	}
 	ReGeo(){
@@ -110,7 +114,7 @@ export class RempresaComponent implements OnInit {
 			this.marker.setMap(this.map); 
 		},
 		error => {                             
-			alert('Ubicacion no encontrada');
+			Swal.fire({title:'Ubicacion no encontrada',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 		})
 	}
 }

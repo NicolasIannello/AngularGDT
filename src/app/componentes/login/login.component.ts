@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/servicios/login.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,10 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            window.location.replace("https://mobile-gdt-iannello.herokuapp.com");
+        }
+
         if(localStorage.getItem('Tipo') == 'empresa'){
             this.router.navigate(['/Empresa']);
         }else if(localStorage.getItem('Tipo') == 'cliente'){
@@ -54,7 +59,8 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('ID',texto.ID);
                 this.router.navigate(['/Empresa']);
             }else{
-                alert(texto);
+                //alert(texto);
+                Swal.fire({title:texto,confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
                 this.spinner="";
                 this.spinnertext="Ingresar";
             }

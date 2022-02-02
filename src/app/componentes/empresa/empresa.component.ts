@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmpresaService } from 'src/app/servicios/empresa.service';
+import Swal from 'sweetalert2';
 
 @Component({
 	selector: 'app-empresa',
@@ -79,11 +80,11 @@ export class EmpresaComponent implements OnInit {
 	}
 	Generar() {
 		if (this.servicio == "" || this.fechafin == "" || this.horainicio == "" || this.horafin == "" || this.duracionmin == "" || this.capacidad == "") {
-			alert("Complete todos los campos");
+			Swal.fire({title:'Complete todos los campos',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 		} else if (this.dia1 == false && this.dia2 == false && this.dia3 == false && this.dia4 == false && this.dia5 == false && this.dia6 == false && this.dia7 == false) {
-			alert("Debe seleccionar al menos un dia de la semana");
+			Swal.fire({title:'Debe seleccionar al menos un dia de la semana',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 		} else if (this.horainicio >= this.horafin) {
-			alert("Revise horarios ingresados");
+			Swal.fire({title:'Revise horarios ingresados',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 		} else {
 			(<HTMLInputElement>document.getElementById('generar')).disabled = true;
 			this.spinnerclass = "spinner-border spinner-border-sm";
@@ -107,9 +108,10 @@ export class EmpresaComponent implements OnInit {
 
 			this.api.crearTurno(formData).subscribe(resp => {
 				if (resp == "superpuesto") {
-					alert("No se pudo crear el turno, horarios superpuestos con otro turno");
+					Swal.fire({title:'No se pudo crear el turno, horarios superpuestos con otro turno',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 				} else {
-					alert('Turnos creados')
+					Swal.fire({title:'Turnos creados',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
+
 					this.Turnos = resp
 				}
 				(<HTMLInputElement>document.getElementById('generar')).disabled = false;
@@ -126,9 +128,38 @@ export class EmpresaComponent implements OnInit {
 	}
 	eliminarTurno() {
 		if (this.datoelim == "") {
-			alert("Ingrese el dato para eliminar")
+			Swal.fire({title:'Ingrese el dato para eliminar',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 		} else {
-			if (confirm('Esta por eliminar un turno. Presione aceptar para continuar')) {
+			Swal.fire({
+				title: 'Esta por eliminar un turno',text: "Presione aceptar para continuar",
+				showCancelButton: true,confirmButtonColor:'#22313f',cancelButtonColor: '#d33',
+				cancelButtonText:'Cancelar',confirmButtonText: 'Aceptar'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					(<HTMLInputElement>document.getElementById('datoelim')).disabled = true;
+					this.spinnerelim = "spinner-border spinner-border-sm";
+					this.spinnerelimtext = "";
+	
+					const formData = new FormData
+					formData.append("dato", this.datoelim);
+					formData.append("tipo", (<HTMLInputElement>document.getElementById("tipoelim")).value);
+					formData.append("ID", JSON.parse(localStorage.getItem('ID') || '{}'));
+	
+					this.api.Eliminar(formData).subscribe((resp) => {
+						if (resp == "no encontrado") {
+							Swal.fire({title:'No se pudo encontrar un turno con dicho valor',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
+						} else {
+							Swal.fire({title:'Turnos eliminados',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
+
+							this.Turnos = resp
+						}
+						(<HTMLInputElement>document.getElementById('datoelim')).disabled = false;
+						this.spinnerelim = "";
+						this.spinnerelimtext = "Eliminar turnos";
+					})
+				}
+			  })
+			/*if (confirm('Esta por eliminar un turno. Presione aceptar para continuar')) {
 				(<HTMLInputElement>document.getElementById('datoelim')).disabled = true;
 				this.spinnerelim = "spinner-border spinner-border-sm";
 				this.spinnerelimtext = "";
@@ -149,7 +180,7 @@ export class EmpresaComponent implements OnInit {
 					this.spinnerelim = "";
 					this.spinnerelimtext = "Eliminar turnos";
 				})
-			}
+			}*/
 		}
 	}
 	selectelim() {
@@ -163,8 +194,9 @@ export class EmpresaComponent implements OnInit {
 	}
 	cargarCliente(){
 		if(this.fechacarg=='' || this.serviciocarg=='' || this.timecarg=='' || this.cliecarg=='' ){
-			alert('Complete todos los campos antes de continuar');
-			alert(this.fechacarg+' '+this.serviciocarg+' '+this.timecarg+' '+this.cliecarg)
+			Swal.fire({title:'Complete todos los campos antes de continuar',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
+
+			//alert(this.fechacarg+' '+this.serviciocarg+' '+this.timecarg+' '+this.cliecarg)
 		}else{
 			(<HTMLInputElement>document.getElementById('cargar')).disabled = true;
 			this.spinnerclie = "spinner-border spinner-border-sm";
@@ -182,13 +214,13 @@ export class EmpresaComponent implements OnInit {
 					(<HTMLInputElement>document.getElementById('cargar')).disabled = false;
 					this.spinnerclie = "";
 					this.spinnerclietext = "Cargar turno";
-					alert(resp);
+					Swal.fire({title:resp,confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 				}else{
 					(<HTMLInputElement>document.getElementById('cargar')).disabled = false;
 					this.spinnerclie = "";
 					this.spinnerclietext = "Cargar turno";
 					this.Clientes=resp
-					alert("Turno cargado con exito");
+					Swal.fire({title:'Turno cargado con exito',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 				}
 			})
 		}

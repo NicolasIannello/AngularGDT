@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ClienteService } from 'src/app/servicios/cliente.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear',
@@ -72,7 +73,7 @@ export class CrearComponent implements OnInit {
   }
   BServicio(){
     if(this.servicio=="" || this.localidad==""){
-      alert("Complete servicio y localidad");
+      Swal.fire({title:'Complete servicio y localidad',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
     }else{
       this.spB = "spinner-border spinner-border-sm";
       this.spBtext = "";
@@ -167,7 +168,7 @@ export class CrearComponent implements OnInit {
       document.getElementById(this.dia)!.className=this.claseant;
     }
     if(dia==""){
-      alert("Dia no disponible")
+      Swal.fire({title:'Dia no disponible',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
       this.horarios=[]
     }else{
       this.dia=dia
@@ -201,7 +202,7 @@ export class CrearComponent implements OnInit {
       dato.append("cel","+549"+this.celular);
       dato.append("msgenv",this.check.toString());
     }else if(this.check==true){
-      alert("Ingrese un numero valido");
+      Swal.fire({title:'Ingrese un numero valido',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
       this.screar="";
       this.screartext="Sacar turno";
     }else if(this.check==false){
@@ -210,17 +211,17 @@ export class CrearComponent implements OnInit {
     }
 
     if(this.horario=="" && (this.check==false || (this.check==true && this.celular.match(/^[0-9]{2,3}\ ?[0-9]{3,4}(\ |-)?[0-9]{4}$/g)))){
-      alert("complete todos los campos");
+      Swal.fire({title:'complete todos los campos',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
       this.screar="";
       this.screartext="Sacar turno";
     }else{
       this.api.crearTurno(dato).subscribe(resp=>{
         if(resp=="Se han agotado los cupos para ese horario"){
-          alert("Se han agotado los cupos para ese horario");	
+          Swal.fire({title:'Se han agotado los cupos para ese horario',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});	
           this.horarios=[]	
           this.mostrarfecha(this.dia,'dia diaselected')
         }else{
-          alert(resp);
+          Swal.fire({title:resp,confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
           var dato=new FormData();
           dato.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
           this.api.cargarTurnos(dato).subscribe(resp=>{

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistroService } from 'src/app/servicios/registro.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-rcliente',
@@ -42,9 +43,9 @@ export class RclienteComponent implements OnInit {
   }
   crearClie(){
     if(this.nombre=="" || this.apellido=="" || this.contra=="" || this.user=="" || this.contra2=="" || this.mail==""){
-      alert("Complete todos los campos");
+      Swal.fire({title:'Complete todos los campos',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
     }else if(this.contra!=this.contra2){
-      alert("Las contraseñas no coinciden");
+      Swal.fire({title:"Las contraseñas no coinciden",confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
     }else if(this.mail.match(/^(w{3}\.)?([A-z]||[0-9])+@([A-z]||[0-9]){1,10}\.com(\.[a-z]{2})?$/g)){
       (<HTMLInputElement>document.getElementById("crearclie")).disabled=true;
       this.spinnerclie = "spinner-border spinner-border-sm";
@@ -62,13 +63,13 @@ export class RclienteComponent implements OnInit {
         (<HTMLInputElement>document.getElementById("crearclie")).disabled=false;
         this.spinnerclie = "";
         this.spinnertext = "Crear cuenta";
-        alert(resp)
+        Swal.fire({title:resp,confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'})
         if(resp=="Cuenta de cliente creada con exito"){
           this.router.navigate(['/']);
         }
       })
     }else{
-      alert("Ingrese un email valido");
+      Swal.fire({title:'Ingrese un email valido',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
     }
   }
 }

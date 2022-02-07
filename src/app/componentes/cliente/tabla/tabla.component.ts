@@ -12,24 +12,26 @@ export class TablaComponent implements OnInit {
   //ID: string = JSON.parse(localStorage.getItem('ID') || '{}');
   cel:string="";
   elim:string="false";
+  conf:string='false';
 
   constructor(public api:ClienteService) { }
 
   ngOnInit(): void {
   }
   async Eliminar(id:any){
+    this.conf="false";
     const { value: formValues } = await Swal.fire({
       title: 'Esta por eliminar un turno',text: "Presione aceptar para continuar",
       showCancelButton: true,confirmButtonColor:'#22313f',cancelButtonColor: '#d33',
       cancelButtonText:'Cancelar',confirmButtonText: 'Aceptar',
       footer:'<div class="container"><div class="row"><b>En caso de querer recibir una notificacion via WhatsApp ingrese su numero debajo</b></div>'+
       '<div class="row"><input type="text" id="cel" style="width:80%;" class="swal2-input" [(ngModel)]="cel"></div></div>',
-      preConfirm: () => { this.cel=(<HTMLInputElement>document.getElementById('cel')).value; 
+      preConfirm: () => { this.cel=(<HTMLInputElement>document.getElementById('cel')).value;this.conf="true" 
                           return (<HTMLInputElement>document.getElementById('cel')).value;
                         }
     });
 
-    if (formValues || !formValues) {
+    if (/*formValues || !formValues*/ this.conf="true") {
       var dato=new FormData();
       dato.append("IDtce",id);
       dato.append("IDclie",JSON.parse(localStorage.getItem('ID') || '{}'));

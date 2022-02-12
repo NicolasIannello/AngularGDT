@@ -338,7 +338,12 @@ export class CrearComponent implements OnInit {
         datomes = {dia: new Date(resp[i].Dia).getDate()+1,class:"dia diaselected",fecha: resp[i].Dia};
         this.fechas.push(datomes);
         //alert(new Date(resp[i].Dia).getDate()+1+' '+i+' '+(resp.length-1)+' '+cant)
-        if(i==resp.length-1 && new Date(resp[i].Dia).getDate()+1<cant){
+        if(/*i==resp.length-1 &&*/this.sigdia<new Date(resp[i].Dia).getDate()+1 && new Date(resp[i].Dia).getDate()+1<cant){
+          for (let j = new Date(resp[i].Dia).getDate()+2; j <= cant; j++) {
+            datomes = {dia: j,class:"dia",fecha: ""};
+            this.fechas.push(datomes); 
+          }
+        }else if(i==resp.length-1 && new Date(resp[i].Dia).getDate()+1<cant){
           for (let j = new Date(resp[i].Dia).getDate()+2; j <= cant; j++) {
             datomes = {dia: j,class:"dia",fecha: ""};
             this.fechas.push(datomes); 

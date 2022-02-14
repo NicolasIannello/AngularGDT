@@ -251,6 +251,7 @@ button.btnMostrar:active{
 #Mapa{
     height: 610%;
     width: 80%;
+    z-index: 1;
 }
 .QR{
     position: absolute;

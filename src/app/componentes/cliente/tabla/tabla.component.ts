@@ -25,9 +25,9 @@ export class TablaComponent implements OnInit {
       showCancelButton: true,confirmButtonColor:'#22313f',cancelButtonColor: '#d33',
       cancelButtonText:'Cancelar',confirmButtonText: 'Aceptar',
       footer:'<div class="container"><div class="row"><b>En caso de querer recibir una notificacion via WhatsApp ingrese su numero debajo</b></div>'+
-      '<div class="row"><input type="text" id="cel" style="width:80%;" class="swal2-input" [(ngModel)]="cel"></div></div>',
-      preConfirm: () => { this.cel=(<HTMLInputElement>document.getElementById('cel')).value;this.conf="true" 
-                          return (<HTMLInputElement>document.getElementById('cel')).value;
+      '<div class="row"><input type="text" id="celu" style="width:80%;" class="swal2-input" [(ngModel)]="cel"></div></div>',
+      preConfirm: () => { this.cel=(<HTMLInputElement>document.getElementById('celu')).value;this.conf="true" 
+                          return (<HTMLInputElement>document.getElementById('celu')).value;
                         }
     });
 

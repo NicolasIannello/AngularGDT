@@ -25,7 +25,7 @@ export class CrearComponent implements OnInit {
 	map:any;
 
   respuesta:Array<any>=[];
-  nombreclicked:string="";
+  nombreclicked:string="Calendario";
   fechas:Array<any>=[];
   calendario:Array<any>=[{mes:'',dia: '',disp: false}];
 
@@ -72,6 +72,7 @@ export class CrearComponent implements OnInit {
     this.localidad=(<HTMLInputElement>document.getElementById("localidademp")).value
   }
   BServicio(){
+    this.fechas=[];this.nombreclicked="Calendario";this.horarios=[];
     if(this.servicio=="" || this.localidad==""){
       Swal.fire({title:'Complete servicio y localidad',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
     }else{

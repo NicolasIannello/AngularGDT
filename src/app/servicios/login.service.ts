@@ -10,8 +10,8 @@ export class LoginService {
   servidor:string;
 
   constructor(private http: HttpClient) {
-    //this.servidor="http://localhost:8080";
-    this.servidor="https://api-iannello.herokuapp.com";
+    this.servidor="http://localhost:8080";
+    //this.servidor="https://api-iannello.herokuapp.com";
   }
 
   iniciarsesion(datos:any):Observable<any>{

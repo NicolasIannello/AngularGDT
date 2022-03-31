@@ -11,8 +11,8 @@ export class ClienteService {
   header:HttpHeaders;
 
   constructor(private http: HttpClient) {
-   //this.servidor="http://localhost:8080";
-    this.servidor="https://api-iannello.herokuapp.com";
+   this.servidor="http://localhost:8080";
+    //this.servidor="https://api-iannello.herokuapp.com";
     this.header=new HttpHeaders().set('Acces-Control-Allow-Origin','*');
   }
 

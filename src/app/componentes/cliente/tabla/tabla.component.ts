@@ -34,7 +34,7 @@ export class TablaComponent implements OnInit {
     if (/*formValues || !formValues*/ this.conf=="true") {
       var dato=new FormData();
       dato.append("IDtce",id);
-      dato.append("IDclie",JSON.parse(localStorage.getItem('ID') || '{}'));
+      dato.append("IDclie",(localStorage.getItem('ID') || '{}'));
 
       if(this.cel==""){
         this.elim='true';

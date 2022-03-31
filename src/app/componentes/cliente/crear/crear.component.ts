@@ -196,7 +196,7 @@ export class CrearComponent implements OnInit {
     dato.append("nom",this.nombreclicked);
     dato.append("fecha",this.dia);
     dato.append("horario",this.horario);
-    dato.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
+    dato.append("ID",(localStorage.getItem('ID') || '{}'));
 
     if(this.check==true && this.celular.match(/^[0-9]{2,3}\ ?[0-9]{3,4}(\ |-)?[0-9]{4}$/g)){
       //this.celular="+549"+this.celular;

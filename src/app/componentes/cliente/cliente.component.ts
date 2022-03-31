@@ -20,7 +20,7 @@ export class ClienteComponent implements OnInit {
 			this.router.navigate(['']);
 		}
 		const formData = new FormData
-		formData.append("ID", JSON.parse(localStorage.getItem('ID') || '{}'));
+		formData.append("ID", /*JSON.parse(*/localStorage.getItem('ID') || '{}');
 
     this.api.traernom(formData).subscribe(resp=>{
       this.User=resp;

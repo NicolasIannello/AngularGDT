@@ -43,6 +43,7 @@ export class CrearComponent implements OnInit {
 
   check:boolean=false;
   celular:string="";
+  ubicacion:string="";
 
   constructor(public api:ClienteService) { }
 
@@ -101,6 +102,7 @@ export class CrearComponent implements OnInit {
 
         this.respuesta=resp
         this.respuesta.forEach(elemento => {
+          this.ubicacion=elemento.Ubicacion;
           this.api.ReGeo(elemento.Ubicacion).subscribe(res=>{
             var lat=parseFloat(res[0].lat), lon=parseFloat(res[0].lon);
 
@@ -108,7 +110,7 @@ export class CrearComponent implements OnInit {
             marker.setPosition({lat: lat, lng: lon})
             marker.setMap(this.map)
             marker.setTitle(elemento.NombreUsuario)            
-            marker.addListener("click", () => {
+            marker.addListener("click", () => {this.actCal(elemento.NombreUsuario,elemento.Ubicacion)} /*() => {
               this.nombreclicked=elemento.NombreUsuario;
 
               const formData = new FormData()
@@ -131,7 +133,7 @@ export class CrearComponent implements OnInit {
                   //console.log(hoy);
 
                   if( new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() && (hoy<=new Date(resp[i].Dia).getDate() && new Date(x).getMonth()==new Date(resp[i].Dia).getMonth()) || (new Date(x).getMonth()<new Date(resp[i].Dia).getMonth()) ){
-                  //if( ( hoy<=new Date(resp[i].Dia).getDate() && new Date(x).getMonth()<=new Date(resp[i].Dia).getMonth() && new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() ) /*|| new Date(x).getMonth()!=new Date(resp[i].Dia).getMonth()*/ ){
+                  //if( ( hoy<=new Date(resp[i].Dia).getDate() && new Date(x).getMonth()<=new Date(resp[i].Dia).getMonth() && new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() ) || new Date(x).getMonth()!=new Date(resp[i].Dia).getMonth() ){
                     //console.log('entre hoy: '+hoy+' fecha: '+(new Date(resp[i].Dia).getDate()+1)+' mes hoy '+new Date(x).getMonth()+' mes fecha '+new Date(resp[i].Dia).getMonth());
                     
                     switch(new Date(resp[i].Dia).getMonth()){
@@ -153,7 +155,7 @@ export class CrearComponent implements OnInit {
                 //console.log(resp);
               })
               //console.log(this.fechas);
-            });
+            }*/);
 
             this.marcadores.push(marker)
           },
@@ -163,6 +165,52 @@ export class CrearComponent implements OnInit {
         });
       })
     }
+  }
+  actCal(a: any,b: any){
+    this.fechas=[];this.nombreclicked="Calendario";this.horarios=[];
+    this.nombreclicked=a;
+
+    const formData = new FormData()
+    formData.append('nom',this.nombreclicked)
+    formData.append('ubi',b)
+    formData.append('serv',this.servicio)
+
+    this.fechas=[]
+    this.api.diaServicios(formData).subscribe(resp=>{
+      this.mes='a';
+      this.cont=0;
+      //var cantpasado=0
+      var diapasado=0
+      let mes={mes:""};
+      var ultmes="x";
+      //console.log(resp);
+      for (let i = 0; i < resp.length; i++) {
+        let x=new Date(); let hoy=x.getDate() 
+        let datomes={dia:hoy,class:"",fecha:""};
+        //console.log(hoy);
+
+        if( new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() && (hoy<=new Date(resp[i].Dia).getDate() && new Date(x).getMonth()==new Date(resp[i].Dia).getMonth()) || (new Date(x).getMonth()<new Date(resp[i].Dia).getMonth()) ){
+        //if( ( hoy<=new Date(resp[i].Dia).getDate() && new Date(x).getMonth()<=new Date(resp[i].Dia).getMonth() && new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() ) || new Date(x).getMonth()!=new Date(resp[i].Dia).getMonth() ){
+          //console.log('entre hoy: '+hoy+' fecha: '+(new Date(resp[i].Dia).getDate()+1)+' mes hoy '+new Date(x).getMonth()+' mes fecha '+new Date(resp[i].Dia).getMonth());
+          
+          switch(new Date(resp[i].Dia).getMonth()){
+            case 0: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Enero","Febrero",31);break;
+            case 1: diapasado=this.armarCalendario(diapasado,resp,datomes,i,28,"Febrero","Marzo",31);break;
+            case 2: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Marzo","Abril",28);break;
+            case 3: diapasado=this.armarCalendario(diapasado,resp,datomes,i,30,"Abril","Mayo",31);break;
+            case 4: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Mayo","Junio",30);break;
+            case 5: diapasado=this.armarCalendario(diapasado,resp,datomes,i,30,"Junio","Julio",31);break;
+            case 6: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Julio","Agosto",30);break;
+            case 7: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Agosto","Septiembre",31);break;
+            case 8: diapasado=this.armarCalendario(diapasado,resp,datomes,i,30,"Septiembre","Octubre",31);break;
+            case 9: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Octubre","Noviembre",30);break;
+            case 10: diapasado=this.armarCalendario(diapasado,resp,datomes,i,30,"Noviembre","Diciembre",31);break;
+            case 11: diapasado=this.armarCalendario(diapasado,resp,datomes,i,31,"Diciembre","Enero",30);break;
+          }
+        }
+      }
+      //console.log(resp);
+    })
   }
   mostrarfecha(dia:any,clase:any){
     if(this.dia!=''){
@@ -174,7 +222,11 @@ export class CrearComponent implements OnInit {
     }else{
       this.dia=dia
       this.claseant=clase
-    
+
+      if(this.dia==dia){
+        document.getElementById(this.dia)!.className="dia diaselected diaclicked";
+      }
+
       var dato=new FormData();
       dato.append("fecha",dia);
       dato.append("nom",this.nombreclicked);
@@ -219,8 +271,9 @@ export class CrearComponent implements OnInit {
       this.api.crearTurno(dato).subscribe(resp=>{
         if(resp=="Se han agotado los cupos para ese horario"){
           Swal.fire({title:'Se han agotado los cupos para ese horario',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});	
-          this.horarios=[]	
-          this.mostrarfecha(this.dia,'dia diaselected')
+          this.dia="";	
+          //this.mostrarfecha(this.dia,'dia diaselected')
+          this.actCal(this.nombreclicked,this.ubicacion)
         }else{
           Swal.fire({title:resp,confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
           var dato=new FormData();

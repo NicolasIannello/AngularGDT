@@ -72,7 +72,7 @@ export class CrearComponent implements OnInit {
     this.localidad=(<HTMLInputElement>document.getElementById("localidademp")).value
   }
   BServicio(){
-    this.fechas=[];this.nombreclicked="Calendario";this.horarios=[];
+    this.fechas=[];this.nombreclicked="Calendario";this.horarios=[];this.dia="";this.ubicacion="";
     if(this.servicio=="" || this.localidad==""){
       Swal.fire({title:'Complete servicio y localidad',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
     }else{
@@ -281,6 +281,7 @@ export class CrearComponent implements OnInit {
             this.Turnos=resp
             this.CTurnos.emit(this.Turnos);
           })
+          this.dia="";
           this.actCal(this.nombreclicked,this.ubicacion);
         }
         this.screar="";

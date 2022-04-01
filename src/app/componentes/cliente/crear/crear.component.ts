@@ -8,7 +8,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./crear.component.css']
 })
 export class CrearComponent implements OnInit {
-  //ID: string = JSON.parse(localStorage.getItem('ID') || '{}');
   servicios: Array<any> = [];
   localidades: Array<any> = [];
   horarios:Array<any>=[];
@@ -277,11 +276,12 @@ export class CrearComponent implements OnInit {
         }else{
           Swal.fire({title:resp,confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
           var dato=new FormData();
-          dato.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
+          dato.append("ID",(localStorage.getItem('ID') || '{}'));
           this.api.cargarTurnos(dato).subscribe(resp=>{
             this.Turnos=resp
             this.CTurnos.emit(this.Turnos);
           })
+          this.actCal(this.nombreclicked,this.ubicacion);
         }
         this.screar="";
         this.screartext="Sacar turno";

@@ -9,7 +9,6 @@ import Swal from 'sweetalert2';
 })
 export class TablaComponent implements OnInit {
   @Input() Turnos!: Array<any>;
-  //ID: string = JSON.parse(localStorage.getItem('ID') || '{}');
   cel:string="";
   elim:string="false";
   conf:string='false';
@@ -52,7 +51,7 @@ export class TablaComponent implements OnInit {
         this.api.Eliminar(dato).subscribe(resp=>{
           Swal.fire({title:resp,confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'})
           var dato=new FormData();
-          dato.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
+          dato.append("ID",(localStorage.getItem('ID') || '{}'));
           this.api.cargarTurnos(dato).subscribe(resp=>{
             this.Turnos=resp
           })
@@ -62,12 +61,12 @@ export class TablaComponent implements OnInit {
     /*if(confirm('Esta por eliminar un turno. Presione aceptar para continuar')){
       var dato=new FormData();
       dato.append("IDtce",id);
-      dato.append("IDclie",JSON.parse(localStorage.getItem('ID') || '{}'));
+      dato.append("IDclie",(localStorage.getItem('ID') || '{}'));
 
       this.api.Eliminar(dato).subscribe(resp=>{
         alert(resp);
         var dato=new FormData();
-	      dato.append("ID",JSON.parse(localStorage.getItem('ID') || '{}'));
+	      dato.append("ID",(localStorage.getItem('ID') || '{}'));
         this.api.cargarTurnos(dato).subscribe(resp=>{
           this.Turnos=resp
         })

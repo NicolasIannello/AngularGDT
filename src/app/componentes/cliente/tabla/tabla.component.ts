@@ -31,6 +31,8 @@ export class TablaComponent implements OnInit {
     });
 
     if (/*formValues || !formValues*/ this.conf=="true") {
+      (<HTMLInputElement>document.getElementById('spinnerelim'+id)).className="spelim spinner-border text-light";
+      (<HTMLInputElement>document.getElementById('spinnerelim'+id)).innerHTML="";
       var dato=new FormData();
       dato.append("IDtce",id);
       dato.append("IDclie",(localStorage.getItem('ID') || '{}'));
@@ -49,6 +51,8 @@ export class TablaComponent implements OnInit {
       }
       if(this.elim=='truecel' || this.elim=='true'){
         this.api.Eliminar(dato).subscribe(resp=>{
+          (<HTMLInputElement>document.getElementById('spinnerelim'+id)).className="spelim";
+          (<HTMLInputElement>document.getElementById('spinnerelim'+id)).innerHTML="Eliminar";
           Swal.fire({title:resp,confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'})
           var dato=new FormData();
           dato.append("ID",(localStorage.getItem('ID') || '{}'));

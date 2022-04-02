@@ -142,3 +142,7 @@ body{
     background-color: rgb(34, 49, 63);
     color:rgb(236, 236, 236);
 }
+.spelim{
+    padding: 0;
+    border-width: initial;
+}

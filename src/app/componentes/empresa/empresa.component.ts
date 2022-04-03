@@ -156,6 +156,13 @@ export class EmpresaComponent implements OnInit {
 						(<HTMLInputElement>document.getElementById('datoelim')).disabled = false;
 						this.spinnerelim = "";
 						this.spinnerelimtext = "Eliminar turnos";
+
+						const formData = new FormData
+						formData.append("ID", (localStorage.getItem('ID') || '{}'));
+						
+						this.api.cargarClientes(formData).subscribe(resp =>
+							this.Clientes = resp
+						)
 					})
 				}
 			  })

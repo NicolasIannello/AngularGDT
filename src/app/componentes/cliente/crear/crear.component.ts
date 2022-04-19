@@ -186,9 +186,9 @@ export class CrearComponent implements OnInit {
       for (let i = 0; i < resp.length; i++) {
         let x=new Date(); let hoy=x.getDate() 
         let datomes={dia:hoy,class:"",fecha:""};
-        //console.log(hoy);
+        //console.log(hoy+' '+new Date(resp[i].Dia).getDate());
 
-        if( new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() && (hoy<=new Date(resp[i].Dia).getDate() && new Date(x).getMonth()==new Date(resp[i].Dia).getMonth()) || (new Date(x).getMonth()<new Date(resp[i].Dia).getMonth()) ){
+        if( new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() && (hoy<=new Date(resp[i].Dia).getDate()+1 && new Date(x).getMonth()==new Date(resp[i].Dia).getMonth()) || (new Date(x).getMonth()<new Date(resp[i].Dia).getMonth()) ){
         //if( ( hoy<=new Date(resp[i].Dia).getDate() && new Date(x).getMonth()<=new Date(resp[i].Dia).getMonth() && new Date(x).getFullYear()<=new Date(resp[i].Dia).getFullYear() ) || new Date(x).getMonth()!=new Date(resp[i].Dia).getMonth() ){
           //console.log('entre hoy: '+hoy+' fecha: '+(new Date(resp[i].Dia).getDate()+1)+' mes hoy '+new Date(x).getMonth()+' mes fecha '+new Date(resp[i].Dia).getMonth());
           

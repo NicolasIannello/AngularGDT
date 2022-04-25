@@ -229,6 +229,11 @@ export class EmpresaComponent implements OnInit {
 					this.Clientes=resp
 					Swal.fire({title:'Turno cargado con exito',confirmButtonText:'Aceptar',confirmButtonColor:'#22313f'});
 				}
+				const formData = new FormData
+				formData.append("ID", (localStorage.getItem('ID') || '{}'));
+				this.api.cargarTurno(formData).subscribe(resp =>
+					this.Turnos = resp
+				)
 			})
 		}
 	}
